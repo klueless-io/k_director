@@ -20,8 +20,8 @@
     [
       "@semantic-release/changelog",
       { 
-        "changelogFile": "docs/CHANGE.md",
-        "changelogFileTitle": "k_director Changelog"
+        "changelogFile": "docs/CHANGELOG.md",
+        "changelogFileTitle": "KDirector Changelog"
       }
     ],
     [
