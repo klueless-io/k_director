@@ -94,8 +94,8 @@ KManager.action :bootstrap do
         cd(:app)
         self.dom = OpenStruct.new(parent.options.to_h.merge(options.to_h))
 
-        # run_command("gh secret set SLACK_WEBHOOK --body \"$SLACK_REPO_WEBHOOK\"")
-        # run_command("gh secret set GEM_HOST_API_KEY --body \"$GEM_HOST_API_KEY\"")
+        run_command("gh secret set SLACK_WEBHOOK --body \"$SLACK_REPO_WEBHOOK\"")
+        run_command("gh secret set GEM_HOST_API_KEY --body \"$GEM_HOST_API_KEY\"")
         # add('.github/workflows/main.yml')
         # add('.github/workflows/semver.yml')
         # add('.releaserc.json')
