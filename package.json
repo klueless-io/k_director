@@ -1,0 +1,14 @@
+{
+  "name": "k_director",
+  "version": "0.0.13",
+  "description": "Command line and CI/CD tools for k_director",
+  "scripts": {
+    "release": "semantic-release"
+  },
+  "devDependencies": {
+    "semantic-release": "^19.0.2",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@klueless-js/semantic-release-rubygem": "github:klueless-js/semantic-release-rubygem"
+  }
+}
