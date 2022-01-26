@@ -4,3 +4,10 @@
 ### Bug Fixes
 
 * add semver change log ([2069bd2](https://github.com/klueless-io/k_director/commit/2069bd24b9d32649c666480da76781514beeecf3))
+
+
+## [0.1.1](https://github.com/klueless-io/k_director/compare/v0.1.0...v0.1.1) (2022-01-26)
+
+### Feature
+
+* add dom and action builder ([a61e841](https://github.com/klueless-io/k_director/commit/a61e841a40f544f4751e4aaa012d60a447d2dfab))
