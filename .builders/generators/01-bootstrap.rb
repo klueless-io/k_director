@@ -100,7 +100,7 @@ KManager.action :bootstrap do
         # add('.github/workflows/semver.yml')
         # add('.releaserc.json')
 
-        run_command("git add .; git commit -m 'feat: #{self.options.description.downcase}'; git push")
+        # run_command("git add .; git commit -m 'chore: #{self.options.description.downcase}'; git push")
       end
 
     # director.k_builder.debug
