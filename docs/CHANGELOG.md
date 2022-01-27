@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/klueless-io/k_director/compare/v0.1.2...v0.2.0) (2022-01-27)
+
+
+### Features
+
+* add BaseDirector and ChildDirector ([d32265a](https://github.com/klueless-io/k_director/commit/d32265a1e46811bde6bdfbef4b8c9dc8602a8f88))
+
 ## [0.1.2](https://github.com/klueless-io/k_director/compare/v0.1.1...v0.1.2) (2022-01-26)
 
 
