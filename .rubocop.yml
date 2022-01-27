@@ -52,6 +52,9 @@ Style/BlockComments:
   Include:
     - "**/spec/*"
 
+Style/OpenStructUse:
+  Enabled: false
+
 # My Preferences - Start
 Metrics/ClassLength:
   Enabled: false

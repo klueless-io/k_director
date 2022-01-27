@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
+require 'k_log'
 require 'k_util'
+require 'k_builder'
 
 require_relative 'k_director/version'
 require_relative 'k_director/builders/dom_builder'
 require_relative 'k_director/builders/actions_builder'
+require_relative 'k_director/directors/base_director'
+require_relative 'k_director/directors/child_director'
 
 module KDirector
   # raise KDirector::Error, 'Sample message'
