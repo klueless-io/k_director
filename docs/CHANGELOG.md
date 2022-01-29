@@ -1,3 +1,15 @@
+# [0.4.0](https://github.com/klueless-io/k_director/compare/v0.3.0...v0.4.0) (2022-01-29)
+
+
+### Bug Fixes
+
+* run rubocop ([e8805aa](https://github.com/klueless-io/k_director/commit/e8805aaddfde04ba1def563d3f7e5e311fa2841a))
+
+
+### Features
+
+* add GitHub DSL ([e8de7d5](https://github.com/klueless-io/k_director/commit/e8de7d599af16be9dced907617d534f029e1e1ad))
+
 # [0.3.0](https://github.com/klueless-io/k_director/compare/v0.2.0...v0.3.0) (2022-01-29)
 
 
