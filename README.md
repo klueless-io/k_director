@@ -1,3 +1,11 @@
+# Agenda
+
+- GitHub Copilot (Ruby)
+  - Writing specs
+  - DSL
+- SemVer (conventionl commits)
+- GitHub Copilot (GoLang) - Build a Game
+
 # K Director
 
 > KDirector provides domain specific language implementations for code generation
