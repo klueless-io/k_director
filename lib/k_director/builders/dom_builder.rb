@@ -5,28 +5,54 @@ module KDirector
     # Base document builder
     class DomBuilder
       attr_reader :dom
-      attr_reader :node
 
-      def initialize(dom = nil)
-        @dom = dom || schema
+      def initialize
+        reset
       end
 
-      def current_node(node)
-        @node = node
-      end
+      # def current_value(value)
+      #   @value = value
+      # end
 
-      alias last_node node
+      # alias last_value value
 
       def reset
-        @dom = schema
-        @last_node = nil
+        @dom = {}
+        @last = {}
+
+        initialize_dom
       end
 
-      def schema
-        {}
+      def initialize_dom
+        # implement in subclasses
       end
 
-      def logit
+      # set key/value pair, can be used for
+      #
+      # - simple key/value pairs
+      # - initialize key/array pairs
+      def set(key, value)
+        @dom[key] = value
+        @last = { key: key, value: value }
+      end
+
+      # add value to array
+      def add(key, value)
+        @dom[key] << value
+        @last = { key: key, value: value }
+      end
+
+      attr_reader :last
+
+      def last_key
+        @last[:key]
+      end
+
+      def last_value
+        @last[:value]
+      end
+
+      def debug
         puts JSON.pretty_generate(dom)
         # log.structure(dom)
 

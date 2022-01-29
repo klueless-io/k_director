@@ -19,12 +19,6 @@ RSpec.describe KDirector::Builders::ActionsBuilder do
 
       it { is_expected.to be_empty }
     end
-
-    # context '.last_node' do
-    #   subject { instance.last_node }
-
-    #   it { is_expected.to be_nil }
-    # end
   end
 
   describe '#queue_action' do
@@ -39,8 +33,8 @@ RSpec.describe KDirector::Builders::ActionsBuilder do
           .and  include(a: 1, b: 2)
       end
 
-      describe '.last_node' do
-        subject { instance.last_node }
+      describe '.last_value' do
+        subject { instance.last_value }
 
         it { is_expected.to eq({ a: 1, b: 2 }) }
       end
@@ -55,8 +49,8 @@ RSpec.describe KDirector::Builders::ActionsBuilder do
             .and  include(c: 1, d: 2)
         end
 
-        describe '.last_node' do
-          subject { instance.last_node }
+        describe '.last_value' do
+          subject { instance.last_value }
 
           it { is_expected.to eq({ c: 1, d: 2 }) }
         end

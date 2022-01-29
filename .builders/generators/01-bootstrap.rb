@@ -25,6 +25,9 @@ KManager.action :bootstrap do
       .github do
         parent.options.repo_info = repo_info
 
+        self.repo
+        self.name
+
         # create_repository # (:k_director)
         # delete_repository # (:k_director)
         # list_repositories

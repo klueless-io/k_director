@@ -36,7 +36,7 @@ RSpec.describe KDirector::Dsls::Children::Github do
 
     context 'when not configured' do
       context '.options.repo_name' do
-        subject { instance.options.repo_name }
+        subject { instance.options.repo.name }
 
         it { is_expected.to be_nil }
       end
