@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/klueless-io/k_director/compare/v0.2.0...v0.3.0) (2022-01-29)
+
+
+### Features
+
+* add Blueprint DSL ([c27ec12](https://github.com/klueless-io/k_director/commit/c27ec124b8c55b84f2dfd67f37de6ab2c4fb8d22))
+
 # [0.2.0](https://github.com/klueless-io/k_director/compare/v0.1.2...v0.2.0) (2022-01-27)
 
 
