@@ -58,7 +58,6 @@ module KDirector
         @options.director_name = name
       end
 
-
       def template_base_folder
         @options.template_base_folder
       end

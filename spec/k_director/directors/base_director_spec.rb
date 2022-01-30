@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+class SampleBuilder < KDirector::Builders::ActionsBuilder; end
+
 KBuilder.configure(:base_director_spec) do |config|
   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
 
@@ -31,9 +33,9 @@ RSpec.describe KDirector::Directors::BaseDirector do
       end
 
       context 'when custom builder' do
-        let(:builder) { KDirector::Builders::DomBuilder.new }
+        let(:builder) { SampleBuilder.new }
 
-        it { is_expected.to be_a(KDirector::Builders::DomBuilder) }
+        it { is_expected.to be_a(SampleBuilder) }
       end
     end
   end
@@ -124,61 +126,63 @@ RSpec.describe KDirector::Directors::BaseDirector do
     end
   end
 
-  describe '#add_file' do
-    subject { instance.builder.last_value }
+  context 'actions' do
+    subject { instance.builder.last_action }
 
-    before { instance.add_file('david.txt') }
+    describe '#add_file' do
+      before { instance.add_file('david.txt') }
 
-    it do
-      is_expected.to include(
-        action: :add_file,
-        played: false,
-        file: 'david.txt',
-        opts: { on_exist: :skip, dom: {} }
-      )
+      it do
+        is_expected.to include(
+          action: :add_file,
+          played: false,
+          file: 'david.txt',
+          opts: { on_exist: :skip, dom: {} }
+        )
+      end
     end
-  end
 
-  describe '#set_current_folder_action' do
-    subject { instance.builder.last_value }
+    describe '#set_current_folder_action' do
+      subject { instance.builder.last_action }
 
-    before { instance.set_current_folder_action(:app) }
+      before { instance.set_current_folder_action(:app) }
 
-    it do
-      # puts JSON.pretty_generate(subject)
-      is_expected.to include(
-        action: :set_current_folder,
-        played: false,
-        folder_key: :app
-      )
+      it do
+        # puts JSON.pretty_generate(subject)
+        is_expected.to include(
+          action: :set_current_folder,
+          played: false,
+          folder_key: :app
+        )
+      end
     end
-  end
 
-  describe '#run_command' do
-    subject { instance.builder.last_value }
+    describe '#run_command' do
+      subject { instance.builder.last_action }
 
-    before { instance.run_command('echo david') }
+      before { instance.run_command('echo david') }
 
-    it do
-      is_expected.to include(
-        action: :run_command,
-        played: false,
-        command: 'echo david'
-      )
+      it do
+        is_expected.to include(
+          action: :run_command,
+          played: false,
+          command: 'echo david'
+        )
+      end
     end
-  end
 
-  describe '#run_script' do
-    subject { instance.builder.last_value }
+    describe '#run_script' do
+      subject { instance.builder.last_action }
 
-    before { instance.run_script('echo david') }
+      before { instance.run_script('echo david') }
 
-    it do
-      is_expected.to include(
-        action: :run_script,
-        played: false,
-        script: 'echo david'
-      )
+      it do
+        is_expected.to include(
+          action: :run_script,
+          played: false,
+          script: 'echo david'
+        )
+      end
     end
   end
 end
