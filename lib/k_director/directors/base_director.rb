@@ -22,9 +22,9 @@ module KDirector
       attr_reader :builder
       attr_reader :k_builder
       attr_reader :options
-      attr_accessor :dom
 
       def initialize(k_builder, builder, **opts)
+        @index = 1
         @k_builder  = k_builder
         @builder    = builder
         @options    = OpenStruct.new(**opts)
@@ -33,6 +33,12 @@ module KDirector
         @options.template_base_folder ||= default_template_base_folder
         @options.on_exist             ||= :skip       # %i[skip write compare]
         @options.on_action            ||= :queue      # %i[queue execute]
+      end
+
+      def dom
+        @index += 1
+        puts "dom#{@index}"
+        builder.dom
       end
 
       # Used by child directors to inherit options from parent
@@ -47,6 +53,11 @@ module KDirector
       def director_name
         @options.director_name
       end
+
+      def director_name=(name)
+        @options.director_name = name
+      end
+
 
       def template_base_folder
         @options.template_base_folder
@@ -66,8 +77,7 @@ module KDirector
           on_exist: on_exist
         }.merge(opts)
 
-        # WHAT IS THIS FOR?
-        opts[:dom] = dom if dom
+        opts[:dom] = dom.except(:actions) if dom
 
         handle_action(k_builder.add_file_action(file, **opts))
 

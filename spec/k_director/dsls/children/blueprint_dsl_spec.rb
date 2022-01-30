@@ -32,7 +32,7 @@ RSpec.describe KDirector::Dsls::Children::Blueprint do
   describe '#add' do
     before { instance.add(output_file, **opts) }
 
-    subject { instance.builder.last_node }
+    subject { instance.builder.last_value }
 
     let(:output_file) { 'output_file.txt' }
     let(:opts) { {} }
@@ -130,7 +130,7 @@ RSpec.describe KDirector::Dsls::Children::Blueprint do
   end
 
   context 'when using quick overrides' do
-    subject { instance.builder.last_node[:opts] }
+    subject { instance.builder.last_value[:opts] }
 
     let(:output_file) { 'output_file.txt' }
     let(:opts) { {} }
@@ -163,7 +163,7 @@ RSpec.describe KDirector::Dsls::Children::Blueprint do
   describe '#run_template_script' do
     before { instance.run_template_script(template_file, **opts) }
 
-    subject { instance.builder.last_node }
+    subject { instance.builder.last_value }
 
     let(:template_file) { 'somescript.sh' }
     let(:opts) { {} }

@@ -6,7 +6,9 @@ KManager.action :bootstrap do
       .init(k_builder,
         template_base_folder:       'ruby/gem',
         on_exist:                   :skip,                      # %i[skip write compare]
-        on_action:                  :queue,                     # %i[queue execute]
+        on_action:                  :queue                      # %i[queue execute]
+      )
+      .dom(:settings,
         ruby_version:               '2.7',
         repo_name:                  application_name,
         application:                application_name,

@@ -95,7 +95,7 @@ RSpec.describe KDirector::Directors::BaseDirector do
   end
 
   describe 'inherited_opts' do
-    subject { instance.inherited_opts(custom_options) }
+    subject { instance.inherited_opts(**custom_options) }
     let(:custom_options) { {} }
 
     it do
@@ -125,7 +125,7 @@ RSpec.describe KDirector::Directors::BaseDirector do
   end
 
   describe '#add_file' do
-    subject { instance.builder.last_node }
+    subject { instance.builder.last_value }
 
     before { instance.add_file('david.txt') }
 
@@ -134,13 +134,13 @@ RSpec.describe KDirector::Directors::BaseDirector do
         action: :add_file,
         played: false,
         file: 'david.txt',
-        opts: { on_exist: :skip }
+        opts: { on_exist: :skip, dom: {} }
       )
     end
   end
 
   describe '#set_current_folder_action' do
-    subject { instance.builder.last_node }
+    subject { instance.builder.last_value }
 
     before { instance.set_current_folder_action(:app) }
 
@@ -155,7 +155,7 @@ RSpec.describe KDirector::Directors::BaseDirector do
   end
 
   describe '#run_command' do
-    subject { instance.builder.last_node }
+    subject { instance.builder.last_value }
 
     before { instance.run_command('echo david') }
 
@@ -169,7 +169,7 @@ RSpec.describe KDirector::Directors::BaseDirector do
   end
 
   describe '#run_script' do
-    subject { instance.builder.last_node }
+    subject { instance.builder.last_value }
 
     before { instance.run_script('echo david') }
 
