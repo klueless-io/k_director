@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/klueless-io/k_director/compare/v0.4.1...v0.5.0) (2022-01-31)
+
+
+### Features
+
+* add group_set to action_builder ([62d87ed](https://github.com/klueless-io/k_director/commit/62d87ed27cb1479cf5ba3a2fa8cac70fa71f63fd))
+
 ## [0.4.1](https://github.com/klueless-io/k_director/compare/v0.4.0...v0.4.1) (2022-01-30)
 
 
