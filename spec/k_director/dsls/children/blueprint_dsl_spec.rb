@@ -5,6 +5,7 @@ KBuilder.configure(:blueprint_dsl_spec) do |config|
 
   config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
   config.target_folders.add(:app, base_folder)
+  config.target_folders.add(:xmen, base_folder, 'xmen')
 end
 
 Handlebars::Helpers.configure do |config|
@@ -126,7 +127,7 @@ RSpec.describe KDirector::Dsls::Children::Blueprint do
     end
   end
 
-  context 'when using quick overrides' do
+  context 'when using quick overrides (#oadd, #tadd, #fadd)' do
     subject { instance.builder.last_action[:opts] }
 
     let(:output_file) { 'output_file.txt' }
@@ -209,5 +210,45 @@ RSpec.describe KDirector::Dsls::Children::Blueprint do
         )
       end
     end
+  end
+
+  context 'SCENARIOS' do
+    before do
+      instance.set_current_folder_action(:app)
+
+      # touch a file
+      instance.add('sample.txt')
+
+      # create file using template_file
+      instance.add('sample-2.txt',
+                   template_file: 'sample.txt',
+                   name: 'sample-2')
+
+      # create file in different folder using template_file
+      instance.add('sample-3.txt',
+                   template_file: 'sample.txt',
+                   name: 'xman',
+                   folder_key: :xmen)
+
+      # open the output_file
+      instance.oadd('sample-2.txt')
+
+      # open the template_file
+      instance.tadd('sample-2.txt')
+
+      # force write the output_file
+      instance.fadd('sample-2.txt')
+    end
+
+    # it '#scenario_1' do
+    #   config = KBuilder.configuration(:base_director_spec)
+    #   config.debug
+    #   instance.debug
+    #   instance.builder.debug
+    #   config.target_folders.debug
+    #   # instance.play_actions
+    #   # instance.k_builder.run_script("code .")
+    #   # sleep 3
+    # end
   end
 end
