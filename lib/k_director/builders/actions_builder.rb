@@ -23,6 +23,16 @@ module KDirector
         @last_action = action
       end
 
+      # Set many key/value pairs gainst a group
+      #
+      # example:
+      #   set_many(:github, { repo_name: 'repo-name', organization: 'org-name' })
+      def group_set(group, **opts)
+        opts.each do |key, value|
+          set(group, key, value)
+        end
+      end
+
       # set key_set/value pair, can be used for
       #
       # - simple key/value pairs
@@ -47,6 +57,10 @@ module KDirector
       end
 
       # add value to array
+      #   set(:a, [])
+      #   add(:a, 1])
+      #   add(:a, 2])
+      #   add(:a, 3])
       def add(*keyset_value, default_value: nil)
         size = keyset_value.size
 

@@ -137,6 +137,23 @@ RSpec.describe KDirector::Builders::ActionsBuilder do
       end
     end
 
+    describe '#group_set' do
+      before do
+        instance.group_set(:github,
+                           repo_name: 'repo-name',
+                           organization: 'org-name')
+      end
+
+      it do
+        is_expected.to eq({
+                            github: {
+                              repo_name: 'repo-name',
+                              organization: 'org-name'
+                            }
+                          })
+      end
+    end
+
     describe '#reset' do
       subject { instance }
 
