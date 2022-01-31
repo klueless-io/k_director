@@ -1,3 +1,15 @@
+# [0.6.0](https://github.com/klueless-io/k_director/compare/v0.5.0...v0.6.0) (2022-01-31)
+
+
+### Bug Fixes
+
+* add improve group_set on action_builder ([b11ff25](https://github.com/klueless-io/k_director/commit/b11ff25475d48c07af67f3e82bff58ab903ae4a5))
+
+
+### Features
+
+* add data director class ([510d970](https://github.com/klueless-io/k_director/commit/510d9701480a57580b0cc4f4a58398ce7752a431))
+
 # [0.5.0](https://github.com/klueless-io/k_director/compare/v0.4.1...v0.5.0) (2022-01-31)
 
 
