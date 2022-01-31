@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/klueless-io/k_director/compare/v0.4.0...v0.4.1) (2022-01-30)
+
+
+### Bug Fixes
+
+* refactor dom builder with set/add supporting key hierarchies ([8fee48d](https://github.com/klueless-io/k_director/commit/8fee48d12dfb37210ed87d0fb22222bd2db3da28))
+
 # [0.4.0](https://github.com/klueless-io/k_director/compare/v0.3.0...v0.4.0) (2022-01-29)
 
 
