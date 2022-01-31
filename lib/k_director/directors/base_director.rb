@@ -34,6 +34,12 @@ module KDirector
         @options.on_action            ||= :queue      # %i[queue execute]
       end
 
+      def data(**opts)
+        KDirector::Dsls::Children::Data.new(self, **opts)
+
+        self
+      end
+
       def dom
         builder.dom
       end

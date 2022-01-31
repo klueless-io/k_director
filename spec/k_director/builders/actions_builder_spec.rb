@@ -138,19 +138,26 @@ RSpec.describe KDirector::Builders::ActionsBuilder do
     end
 
     describe '#group_set' do
-      before do
-        instance.group_set(:github,
-                           repo_name: 'repo-name',
-                           organization: 'org-name')
+      context 'when key supplied' do
+        before do
+          instance.group_set(:github)
+        end
+
+        it { is_expected.to eq({ github: {} }) }
+
+        context 'when key_pairs provided' do
+          before { instance.group_set(:github, name: 'repo-name', organization: 'org-name') }
+
+          it { is_expected.to eq({ github: { name: 'repo-name', organization: 'org-name' } }) }
+        end
       end
 
-      it do
-        is_expected.to eq({
-                            github: {
-                              repo_name: 'repo-name',
-                              organization: 'org-name'
-                            }
-                          })
+      context 'when no key supplied' do
+        before do
+          instance.group_set(first_name: 'John', last_name: 'Doe')
+        end
+
+        it { is_expected.to eq({ first_name: 'John', last_name: 'Doe' }) }
       end
     end
 

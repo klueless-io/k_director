@@ -8,6 +8,7 @@ require_relative 'k_director/version'
 require_relative 'k_director/builders/actions_builder'
 require_relative 'k_director/directors/base_director'
 require_relative 'k_director/directors/child_director'
+require_relative 'k_director/directors/data'
 require_relative 'k_director/dsls/children/blueprint'
 require_relative 'k_director/dsls/children/github'
 

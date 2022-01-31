@@ -26,10 +26,19 @@ module KDirector
       # Set many key/value pairs gainst a group
       #
       # example:
-      #   set_many(:github, { repo_name: 'repo-name', organization: 'org-name' })
-      def group_set(group, **opts)
-        opts.each do |key, value|
-          set(group, key, value)
+      #   set_many(:github, repo_name: 'repo-name', organization: 'org-name')
+      def group_set(group = nil, **opts)
+        return if group.nil? && opts.empty?
+
+        if group.nil?
+          opts.each do |key, value|
+            set(key, value)
+          end
+        else
+          dom[group] = {} if opts.empty? # initialize the group name if no options are provided
+          opts.each do |key, value|
+            set(group, key, value)
+          end
         end
       end
 
