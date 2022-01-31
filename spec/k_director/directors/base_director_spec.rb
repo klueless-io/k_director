@@ -127,6 +127,30 @@ RSpec.describe KDirector::Directors::BaseDirector do
     end
   end
 
+  describe '#data' do
+    subject { builder.dom }
+
+    describe '#data' do
+      context 'when simple key/values' do
+        before { instance.data(a: 1, b: 2) }
+
+        it { is_expected.to include(a: 1, b: 2) }
+
+        context 'when key/values are nested' do
+          before { instance.data(:child, a: 1, b: 2) }
+
+          it { is_expected.to include(a: 1, b: 2, child: { a: 1, b: 2 }) }
+        end
+      end
+    end
+
+    describe '#settings (settings is an alias for #data with predefined name' do
+      before { instance.settings(a: 1, b: 2) }
+
+      it { is_expected.to include(settings: { a: 1, b: 2 }) }
+    end
+  end
+
   context 'actions' do
     subject { instance.builder.last_action }
 

@@ -34,8 +34,14 @@ module KDirector
         @options.on_action            ||= :queue      # %i[queue execute]
       end
 
-      def data(**opts)
-        KDirector::Dsls::Children::Data.new(self, **opts)
+      def data(name = nil, **opts)
+        KDirector::Directors::Data.new(self, name, **opts)
+
+        self
+      end
+
+      def settings(**opts)
+        KDirector::Directors::Data.new(self, :settings, **opts)
 
         self
       end
