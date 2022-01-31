@@ -16,16 +16,30 @@ RSpec.describe KDirector::Directors::Data do
     context 'when configured with data' do
       subject { parent.builder.dom }
 
+      before { instance }
+
       context 'when name is not provided' do
         let(:name) { nil }
 
         it { is_expected.to be_empty }
+
+        context 'when key/value pairs are provided' do
+          let(:opts) { { first_name: 'John', last_name: 'Doe' } }
+
+          it { is_expected.to eq({ first_name: 'John', last_name: 'Doe' }) }
+        end
       end
 
       context 'when name is provided' do
         let(:name) { :settings }
 
         it { is_expected.to eq(settings: {}) }
+
+        context 'when key/value pairs are provided' do
+          let(:opts) { { first_name: 'John', last_name: 'Doe' } }
+
+          it { is_expected.to eq({ settings: { first_name: 'John', last_name: 'Doe' } }) }
+        end
       end
     end
   end
