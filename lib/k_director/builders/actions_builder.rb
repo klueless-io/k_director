@@ -58,7 +58,8 @@ module KDirector
       end
 
       def debug
-        puts JSON.pretty_generate(dom)
+        puts JSON.pretty_generate(actions)
+        # puts JSON.pretty_generate(dom)
         # log.structure(dom)
 
         self

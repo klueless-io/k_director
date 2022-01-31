@@ -24,7 +24,6 @@ module KDirector
       attr_reader :options
 
       def initialize(k_builder, builder, **opts)
-        @index = 1
         @k_builder  = k_builder
         @builder    = builder
         @options    = OpenStruct.new(**opts)
@@ -36,8 +35,6 @@ module KDirector
       end
 
       def dom
-        @index += 1
-        puts "dom#{@index}"
         builder.dom
       end
 

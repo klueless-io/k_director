@@ -7,6 +7,7 @@ KBuilder.configure(:base_director_spec) do |config|
 
   config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
   config.target_folders.add(:app, base_folder)
+  config.target_folders.add(:xmen, base_folder, 'xmen')
   # config.debug
 end
 
@@ -184,5 +185,53 @@ RSpec.describe KDirector::Directors::BaseDirector do
         )
       end
     end
+  end
+
+  context 'SCENARIOS' do
+    before do
+      Handlebars::Helpers.configure do |config|
+        config.helper_config_file = File.join(Gem.loaded_specs['handlebars-helpers'].full_gem_path, '.handlebars_helpers.json')
+        config.string_formatter_config_file = File.join(Gem.loaded_specs['handlebars-helpers'].full_gem_path, '.handlebars_string_formatters.json')
+      end
+
+      instance.set_current_folder_action(:app)
+
+      # touch a file
+      instance.add_file('sample.txt')
+
+      # create file using template_file
+      instance.add_file('sample-2.txt',
+                        template_file: 'sample.txt',
+                        name: 'sample-2')
+
+      # create file in different folder using template_file
+      instance.add_file('sample-3.txt',
+                        template_file: 'sample.txt',
+                        name: 'xman',
+                        folder_key: :xmen)
+
+      # create file using inline template
+      instance.add_file('sample-4.txt',
+                        template: 'I am custom template, hello {{name}}',
+                        name: 'david')
+
+      # create file using content
+      instance.add_file('sample-5.txt',
+                        content: 'I am custom content')
+
+      instance.run_command('echo david')
+      instance.run_script('echo david')
+    end
+
+    # it '#scenario_1' do
+    #   config = KBuilder.configuration(:base_director_spec)
+    #   config.debug
+    #   instance.debug
+    #   instance.builder.debug
+    #   config.target_folders.debug
+    #   instance.play_actions
+    #   instance.k_builder.run_script("code .")
+    #   sleep 3
+    # end
   end
 end
