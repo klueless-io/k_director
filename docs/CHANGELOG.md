@@ -1,3 +1,10 @@
+## [0.6.1](https://github.com/klueless-io/k_director/compare/v0.6.0...v0.6.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* add data to base (plus settings) to director ([bee18a1](https://github.com/klueless-io/k_director/commit/bee18a1eda36d802611c5cf354031963daa82c69))
+
 # [0.6.0](https://github.com/klueless-io/k_director/compare/v0.5.0...v0.6.0) (2022-01-31)
 
 
