@@ -26,3 +26,15 @@ jobs:
       name: Run rubocop
       run: bundle exec rubocop
 
+    - name: Slack notification on rubocop error
+      if: steps.lint.conclusion == 'failure'
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: klueless-repos
+        SLACK_COLOR: '#ff0000'
+        SLACK_ICON: https://avatars.githubusercontent.com/u/2956762?s=64&v=4
+        SLACK_TITLE: 'Rubocop failure on $ - try:'
+        SLACK_MESSAGE: 'cop -a'
+        SLACK_USERNAME: klueless-io
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
