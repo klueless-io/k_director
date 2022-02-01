@@ -38,3 +38,18 @@ jobs:
         SLACK_USERNAME: klueless-io
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
+    - id: rspec
+      name: Run tests
+      run: bundle exec rspec
+
+    - name: Slack notify on rspec error
+      if: steps.rspec.conclusion == 'failure'
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: klueless-repos
+        SLACK_COLOR: '#ff0000'
+        SLACK_ICON: https://avatars.githubusercontent.com/u/2956762?s=64&v=4
+        SLACK_TITLE: 'RSpec failure on ${{github.repository}} - try:'
+        SLACK_MESSAGE: 'rspec'
+        SLACK_USERNAME: klueless-io
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
