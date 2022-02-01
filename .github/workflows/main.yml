@@ -51,7 +51,6 @@ jobs:
         SLACK_MESSAGE: 'rspec'
         SLACK_USERNAME: klueless-io
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
-      run: exit 1
 
   release:
     needs: build
