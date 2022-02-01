@@ -12,7 +12,7 @@ require_relative 'k_director/directors/data'
 require_relative 'k_director/dsls/children/blueprint'
 require_relative 'k_director/dsls/children/github'
 
-module   KDirector
+module KDirector
   # raise KDirector::Error, 'Sample message'
   Error = Class.new(StandardError)
 
