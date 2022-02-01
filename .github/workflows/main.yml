@@ -22,7 +22,6 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
 
-    - id: lint
     - name: Run rubocop
       run: bundle exec rubocop
 
