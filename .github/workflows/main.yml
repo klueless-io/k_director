@@ -22,11 +22,12 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
 
+    - id: lint
     - name: Run rubocop
       run: bundle exec rubocop
 
     - name: Slack notification on rubocop error
-      if: failure()
+      if: steps.lint.conclusion == 'failure'
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_CHANNEL: klueless-repos
@@ -37,15 +38,12 @@ jobs:
         SLACK_USERNAME: klueless-io
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-    - name: Exist if Rubocop failed
-      if: failure()
-      run: exit 1
-
+    - id: rspec
     - name: Run tests
       run: bundle exec rspec
 
     - name: Slack notify on rspec error
-      if: failure()
+      if: steps.rspec.conclusion == 'failure'
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_CHANNEL: klueless-repos
@@ -55,10 +53,6 @@ jobs:
         SLACK_MESSAGE: 'rspec'
         SLACK_USERNAME: klueless-io
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
-
-    - name: Exist if tests failed
-      if: failure()
-      run: exit 1
 
   release:
     needs: build
