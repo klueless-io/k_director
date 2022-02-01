@@ -37,12 +37,12 @@ jobs:
         SLACK_USERNAME: klueless-io
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-    - name: Run tests
-      run: bundle exec rspec
-
-    - name: Exist if tests failed
+    - name: Exist if Rubocop failed
       if: failure()
       run: exit 1
+
+    - name: Run tests
+      run: bundle exec rspec
 
     - name: Slack notify on rspec error
       if: failure()
@@ -55,6 +55,10 @@ jobs:
         SLACK_MESSAGE: 'rspec'
         SLACK_USERNAME: klueless-io
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
+
+    - name: Exist if tests failed
+      if: failure()
+      run: exit 1
 
   release:
     needs: build
