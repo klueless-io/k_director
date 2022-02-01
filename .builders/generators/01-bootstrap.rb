@@ -35,6 +35,7 @@ KManager.action :bootstrap do
         # list_repositories
         # open_repository # (:k_director)
         # run_command('git init')
+        # k_director git:(main) gh repo edit -d "KDirector provides domain specific language (DSL) implementations for code generation"
       end
       .blueprint(
         name: :bin_hook,
