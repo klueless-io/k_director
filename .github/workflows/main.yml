@@ -22,6 +22,21 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
 
+    - name: Run rubocop
+      run: bundle exec rubocop
+
+    - name: Slack notification on rubocop error
+      if: failure()
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: klueless-repos
+        SLACK_COLOR: '#ff0000'
+        SLACK_ICON: https://avatars.githubusercontent.com/u/2956762?s=64&v=4
+        SLACK_TITLE: 'Rubocop failure on $ - try:'
+        SLACK_MESSAGE: 'cop -a'
+        SLACK_USERNAME: klueless-io
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
+
     - name: Run tests
       run: bundle exec rspec
 
@@ -37,23 +52,9 @@ jobs:
         SLACK_USERNAME: klueless-io
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
 
-    - name: Run rubocop
-      run: bundle exec rubocop
-
-    - name: Slack notification on rubocop error
-      if: failure()
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: klueless-repos
-        SLACK_COLOR: '#ff0000'
-        SLACK_ICON: https://avatars.githubusercontent.com/u/2956762?s=64&v=4
-        SLACK_TITLE: 'Rubocop failure on $ - try:'
-        SLACK_MESSAGE: 'cop -a'
-        SLACK_USERNAME: klueless-io
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
   release:
+    needs: build
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -85,15 +86,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
-
-      # - name: Slack notify new version created
-      #   if: success()
-      #   uses: rtCamp/action-slack-notify@v2
-      #   env:
-      #     SLACK_CHANNEL: klueless-repos
-      #     SLACK_COLOR: '#00ff00'
-      #     SLACK_ICON: https://avatars.githubusercontent.com/u/2956762?s=64&v=4
-      #     SLACK_TITLE: 'New version released on ${{github.repository}}'
-      #     SLACK_MESSAGE: 'git pull'
-      #     SLACK_USERNAME: klueless-io
-      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
