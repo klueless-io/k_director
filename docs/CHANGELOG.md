@@ -1,3 +1,25 @@
+## [0.6.2](https://github.com/klueless-io/k_director/compare/v0.6.1...v0.6.2) (2022-02-01)
+
+
+### Bug Fixes
+
+* merge main and semver gha workflows ([5c3a9e4](https://github.com/klueless-io/k_director/commit/5c3a9e4a6f01129cc513760b86453a4201835765))
+* merge main and semver gha workflows - final ([0c5eb76](https://github.com/klueless-io/k_director/commit/0c5eb76d8008d5ec869fdb9c9adcc306e6a51604))
+* merge main and semver gha workflows [#2](https://github.com/klueless-io/k_director/issues/2) ([f20f719](https://github.com/klueless-io/k_director/commit/f20f719f5f82d5761b9886b1d294750a761a7376))
+* merge main and semver gha workflows [#2](https://github.com/klueless-io/k_director/issues/2) ([2102bca](https://github.com/klueless-io/k_director/commit/2102bca3ebe67d75e4d8d6c12cf962420371264c))
+* merge main and semver gha workflows [#2](https://github.com/klueless-io/k_director/issues/2) ([9f384fd](https://github.com/klueless-io/k_director/commit/9f384fd88ab7ec39fd15b256b61c146e113f4a8d))
+* merge main and semver gha workflows [#2](https://github.com/klueless-io/k_director/issues/2) ([bd4dbcd](https://github.com/klueless-io/k_director/commit/bd4dbcd842f5dee4dabc7eb9495a6f143a02d3ef))
+* merge main and semver gha workflows [#2](https://github.com/klueless-io/k_director/issues/2) ([79c793d](https://github.com/klueless-io/k_director/commit/79c793d46accb10dc81a0bc0b9f8bbc451f03df7))
+* merge main and semver gha workflows [#2](https://github.com/klueless-io/k_director/issues/2) ([353bc81](https://github.com/klueless-io/k_director/commit/353bc81eab7759fba7be3d12ca73293699c70146))
+* merge main and semver gha workflows [#2](https://github.com/klueless-io/k_director/issues/2) ([61f4772](https://github.com/klueless-io/k_director/commit/61f4772cac5400b0085f9081a46f8fbc68471534))
+* merge main and semver gha workflows [#3](https://github.com/klueless-io/k_director/issues/3) ([ee13161](https://github.com/klueless-io/k_director/commit/ee131618a66dea1a0996f4be897bcfe6b902482f))
+* merge main and semver gha workflows [#3](https://github.com/klueless-io/k_director/issues/3) ([074b65c](https://github.com/klueless-io/k_director/commit/074b65cfd95d1e6fc355f8ec0d47f03ec6c9b867))
+* merge main and semver gha workflows [#4](https://github.com/klueless-io/k_director/issues/4) ([8001aa5](https://github.com/klueless-io/k_director/commit/8001aa5be830197baaa5e956c6b5bd010479fd60))
+* merge main and semver gha workflows [#5](https://github.com/klueless-io/k_director/issues/5) ([6ba2432](https://github.com/klueless-io/k_director/commit/6ba2432126c8c1fe5e157d470e6c8609cea174d6))
+* merge main and semver gha workflows [#6](https://github.com/klueless-io/k_director/issues/6) ([62eb60e](https://github.com/klueless-io/k_director/commit/62eb60e55dbfed3aa16faf17e137b39505e2e8a8))
+* merge main and semver gha workflows [#7](https://github.com/klueless-io/k_director/issues/7) ([30fba4b](https://github.com/klueless-io/k_director/commit/30fba4b7da6aced100dfd68a750e051f6ddc0da8))
+* merge main and semver gha workflows [#8](https://github.com/klueless-io/k_director/issues/8) ([e6a55f7](https://github.com/klueless-io/k_director/commit/e6a55f73235a556861140358592f6b5d031dec24))
+
 ## [0.6.1](https://github.com/klueless-io/k_director/compare/v0.6.0...v0.6.1) (2022-01-31)
 
 
