@@ -35,7 +35,8 @@ jobs:
         SLACK_TITLE: 'Rubocop failure on $ - try:'
         SLACK_MESSAGE: 'cop -a'
         SLACK_USERNAME: klueless-io
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      run: exit 1
 
     - name: Run tests
       run: bundle exec rspec
@@ -51,6 +52,7 @@ jobs:
         SLACK_MESSAGE: 'rspec'
         SLACK_USERNAME: klueless-io
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}        
+      run: exit 1
 
   release:
     needs: build
