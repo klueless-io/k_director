@@ -1,3 +1,15 @@
+# [0.7.0](https://github.com/klueless-io/k_director/compare/v0.6.2...v0.7.0) (2022-02-03)
+
+
+### Bug Fixes
+
+* apply cops ([3ed749b](https://github.com/klueless-io/k_director/commit/3ed749b504264f93dfcfbc7c57fb10e91c1aca36))
+
+
+### Features
+
+* add github dsll support and scenario tests ([ce9b0c8](https://github.com/klueless-io/k_director/commit/ce9b0c8ad6df9dc1154074e9e23c5310919bd112))
+
 ## [0.6.2](https://github.com/klueless-io/k_director/compare/v0.6.1...v0.6.2) (2022-02-01)
 
 
