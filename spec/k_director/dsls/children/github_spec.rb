@@ -28,7 +28,6 @@ RSpec.describe KDirector::Dsls::Children::Github do
         fit do
           puts 'xxxxxxxxxxxxxxxxxxxxxxxxxx'
           puts ENV['GH_USER'].blank?
-
           puts 'xxxxxxxxxxxxxxxxxxxxxxxxxx'
           is_expected.to include(
             github: include(
