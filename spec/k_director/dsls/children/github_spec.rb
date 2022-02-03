@@ -26,12 +26,13 @@ RSpec.describe KDirector::Dsls::Children::Github do
       context 'default options' do
         it do
           env_user = ENV['GH_USER'] || ENV['GITHUB_USER']
-  
+
           is_expected.to include(
             github: include(
               repo_name: be_nil,
               user: env_user,
-              organization: be_nil)
+              organization: be_nil
+            )
           )
         end
       end
@@ -41,7 +42,7 @@ RSpec.describe KDirector::Dsls::Children::Github do
           {
             repo_name: 'name',
             user: 'user',
-            organization: 'organization',
+            organization: 'organization'
           }
         end
 
@@ -50,7 +51,8 @@ RSpec.describe KDirector::Dsls::Children::Github do
             github: include(
               repo_name: 'name',
               user: 'user',
-              organization: 'organization')
+              organization: 'organization'
+            )
           )
         end
       end
@@ -61,25 +63,25 @@ RSpec.describe KDirector::Dsls::Children::Github do
         {
           repo_name: 'name',
           user: 'user',
-          organization: 'organization',
+          organization: 'organization'
         }
       end
 
       describe '#repo_name' do
         subject { instance.repo_name }
-      
+
         it { is_expected.to eq('name') }
       end
 
       describe '#user' do
         subject { instance.user }
-      
+
         it { is_expected.to eq('user') }
       end
 
       describe '#organization' do
         subject { instance.organization }
-      
+
         it { is_expected.to eq('organization') }
       end
     end

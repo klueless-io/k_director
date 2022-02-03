@@ -13,9 +13,9 @@ module KDirector
           super(parent, **opts)
 
           defaults = {
-            repo_name: opts[:repo_name],                        # || parent.builder.dom&[:github]&[:repo_name]
+            repo_name: opts[:repo_name], # || parent.builder.dom&[:github]&[:repo_name]
             user: opts[:user] || default_github_user, # || parent.builder.dom&[:github]&[:user]
-            organization: opts[:organization],        # || parent.builder.dom&[:github]&[:organization]
+            organization: opts[:organization] # || parent.builder.dom&[:github]&[:organization]
           }
 
           parent.builder.group_set(:github, **defaults)
@@ -35,20 +35,21 @@ module KDirector
 
         def list_repositories
           repos = create_api.all_repositories
-    
-          KExt::Github::Printer::repositories_as_table repos
-    
+
+          KExt::Github::Printer.repositories_as_table repos
+
           log.kv 'Repository count', repos.length
-        rescue StandardError => error
-          log.exception(error)
+        rescue StandardError => e
+          log.exception(e)
         end
 
         def open_repository(**opts)
           info = repo_info(**opts)
-    
+
           system("open -a 'Google Chrome' #{info.link}")
         end
-    
+
+        # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def create_repository(**opts)
           info = repo_info(**opts)
 
@@ -56,9 +57,9 @@ module KDirector
             log.error 'Repository name is required'
             return
           end
-    
+
           repo = create_api.all_repositories.find { |r| r.full_name == info.full_name }
-    
+
           if repo.nil?
             log.heading 'Repository create'
             log.kv 'Repository Name', info.repo_name
@@ -67,27 +68,29 @@ module KDirector
             success = create_api.create_repository(info.repo_name, organization: info.organization)
             log.info "Repository: #{info.full_name} created" if success
             log.error "Repository: #{info.full_name} was not created" unless success
-    
+
             system("open -a 'Google Chrome' #{info.link}") if opts[:open]
           else
             log.warn 'Repository already exists, nothing to create'
           end
-    
+
           log_repo_info(info)
-        rescue StandardError => error
-          log.exception(error)
+        rescue StandardError => e
+          log.exception(e)
         end
-    
+        # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+
+        # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def delete_repository(**opts)
           info = repo_info(**opts)
-    
+
           if info.repo_name.blank?
             log.error 'Repository name is required'
             return
           end
 
           repo = create_api.all_repositories.find { |r| r.full_name == info.full_name }
-    
+
           if repo.present?
             log.heading 'Repository delete'
             log.kv 'Repository Name', info.repo_name
@@ -100,22 +103,23 @@ module KDirector
           else
             log.warn 'Repository does not exist, nothing to delete'
           end
-    
+
           log_repo_info(info)
-        rescue StandardError => error
-          log.exception(error)
+        rescue StandardError => e
+          log.exception(e)
         end
-        
+        # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+
         def repo_info(**opts)
           repo_name     = opts[:name] || self.repo_name
           repo_name     = repo_name.to_s
-          username      = opts[:username] || self.user
+          username      = opts[:username] || user
           organization  = opts[:organization] || self.organization
           account       = organization || username
-          full_name     = [account, repo_name].compact.join("/")
+          full_name     = [account, repo_name].compact.join('/')
           link          = "https://github.com/#{full_name}"
           ssh_link      = "git@github.com:#{full_name}.git"
-    
+
           OpenStruct.new(
             repo_name: repo_name,
             full_name: full_name,
@@ -131,22 +135,22 @@ module KDirector
         def default_github_user
           KExt::Github.configuration.user
         end
-    
+
         def create_api
           token = KExt::Github.configuration.personal_access_token
           KExt::Github::Api.instance(token)
         end
-    
+
         def delete_api
           token = KExt::Github.configuration.personal_access_token_delete
           KExt::Github::Api.instance(token)
         end
-    
+
         def log_repo_info(info)
           log.kv 'SSH', info.ssh_link
           log.kv 'HTTPS', info.git_link
           log.kv 'GITHUB', KUtil.console.hyperlink(info.link, info.link)
-    
+
           # log.json repo.to_h
         end
       end
