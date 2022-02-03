@@ -12,6 +12,7 @@ require_relative 'k_director/directors/child_director'
 require_relative 'k_director/directors/data'
 require_relative 'k_director/dsls/children/blueprint'
 require_relative 'k_director/dsls/children/github'
+require_relative 'k_director/dsls/nuxt3_dsl'
 
 module KDirector
   # raise KDirector::Error, 'Sample message'
