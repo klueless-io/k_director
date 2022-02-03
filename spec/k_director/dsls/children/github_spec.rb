@@ -25,7 +25,15 @@ RSpec.describe KDirector::Dsls::Children::Github do
       subject { instance.builder.dom }
 
       context 'default options' do
-        it do
+        fit do
+          puts ENV
+          puts '-' * 80
+          puts env_user
+          puts '-' * 80
+          puts ENV['GH_USER']  
+          puts '-' * 80
+          puts JSON.pretty_generate(subject)
+          puts '-' * 80
           is_expected.to include(
             github: include(
               repo_name: '',
