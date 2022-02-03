@@ -13,6 +13,12 @@ module KDirector
 
         super(parent.k_builder, parent.builder, **@parent.inherited_opts(**opts))
       end
+
+      def debug
+        parent.debug_options
+        debug_options
+        debug_dom
+      end
     end
   end
 end

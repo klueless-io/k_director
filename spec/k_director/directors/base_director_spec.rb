@@ -259,15 +259,15 @@ RSpec.describe KDirector::Directors::BaseDirector do
       instance.run_script('echo david')
     end
 
-    fit '#scenario_1' do
-      # config = KBuilder.configuration(:base_director_spec)
-      # config.debug
-      # instance.debug
-      # instance.builder.debug
-      # config.target_folders.debug
-      # instance.play_actions
-      # instance.k_builder.run_script("code .")
-      # sleep 3
-    end
+    # fit '#scenario_1' do
+    #   # config = KBuilder.configuration(:base_director_spec)
+    #   # config.debug
+    #   # instance.debug
+    #   # instance.builder.debug
+    #   # config.target_folders.debug
+    #   # instance.play_actions
+    #   # instance.k_builder.run_script("code .")
+    #   # sleep 3
+    # end
   end
 end

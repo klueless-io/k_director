@@ -14,23 +14,23 @@ module KDirector
 
           defaults = {
             repo_name: opts[:repo_name], # || parent.builder.dom&[:github]&[:repo_name]
-            user: opts[:user] || default_github_user, # || parent.builder.dom&[:github]&[:user]
+            username: opts[:username] || default_github_username, # || parent.builder.dom&[:github]&[:username]
             organization: opts[:organization] # || parent.builder.dom&[:github]&[:organization]
           }
 
-          parent.builder.group_set(:github, **defaults)
+          parent.builder.group_set(:github, **repo_info_hash(**defaults))
         end
 
         def repo_name
-          parent.builder.dom[:github][:repo_name]
+          parent.builder.dom.dig(:github, :repo_name)
         end
 
-        def user
-          parent.builder.dom[:github][:user]
+        def username
+          parent.builder.dom.dig(:github, :username)
         end
 
         def organization
-          parent.builder.dom[:github][:organization]
+          parent.builder.dom.dig(:github, :organization)
         end
 
         def list_repositories
@@ -110,29 +110,32 @@ module KDirector
         end
         # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
-        def repo_info(**opts)
-          repo_name     = opts[:name] || self.repo_name
-          repo_name     = repo_name.to_s
-          username      = opts[:username] || user
+        def repo_info_hash(**opts)
+          repo_name     = (opts[:repo_name] || self.repo_name).to_s
+          username      = opts[:username] || self.username
           organization  = opts[:organization] || self.organization
           account       = organization || username
           full_name     = [account, repo_name].compact.join('/')
           link          = "https://github.com/#{full_name}"
           ssh_link      = "git@github.com:#{full_name}.git"
 
-          OpenStruct.new(
+          {
             repo_name: repo_name,
             full_name: full_name,
             link: link,
             ssh_link: ssh_link,
             username: username,
             organization: organization
-          )
+          }
+        end
+
+        def repo_info(**opts)
+          OpenStruct.new(**repo_info_hash(**opts))
         end
 
         private
 
-        def default_github_user
+        def default_github_username
           KExt::Github.configuration.user
         end
 

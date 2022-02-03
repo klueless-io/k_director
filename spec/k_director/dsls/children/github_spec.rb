@@ -14,6 +14,7 @@ RSpec.describe KDirector::Dsls::Children::Github do
 
   let(:instance) { described_class.new(parent, **opts) }
   let(:opts) { {} }
+  let(:env_user) { ENV['GH_USER'] || ENV['GITHUB_USER'] }
 
   describe 'initialize' do
     subject { instance }
@@ -25,23 +26,46 @@ RSpec.describe KDirector::Dsls::Children::Github do
 
       context 'default options' do
         it do
-          env_user = ENV['GH_USER'] || ENV['GITHUB_USER']
-
           is_expected.to include(
             github: include(
-              repo_name: be_nil,
-              user: env_user,
+              repo_name: '',
+              full_name: "#{env_user}/",
+              link: "https://github.com/#{env_user}/",
+              ssh_link: "git@github.com:#{env_user}/.git",
+              username: env_user,
               organization: be_nil
             )
           )
         end
       end
 
-      context 'custom options' do
+      context 'custom options (username)' do
         let(:opts) do
           {
-            repo_name: 'name',
-            user: 'user',
+            repo_name: 'some_repo',
+            username: 'username'
+          }
+        end
+
+        it do
+          is_expected.to include(
+            github: include(
+              repo_name: 'some_repo',
+              full_name: 'username/some_repo',
+              link: 'https://github.com/username/some_repo',
+              ssh_link: 'git@github.com:username/some_repo.git',
+              username: 'username',
+              organization: be_nil
+            )
+          )
+        end
+      end
+
+      context 'custom options (username and organization)' do
+        let(:opts) do
+          {
+            repo_name: 'some_repo',
+            username: 'username',
             organization: 'organization'
           }
         end
@@ -49,8 +73,11 @@ RSpec.describe KDirector::Dsls::Children::Github do
         it do
           is_expected.to include(
             github: include(
-              repo_name: 'name',
-              user: 'user',
+              repo_name: 'some_repo',
+              full_name: 'organization/some_repo',
+              link: 'https://github.com/organization/some_repo',
+              ssh_link: 'git@github.com:organization/some_repo.git',
+              username: 'username',
               organization: 'organization'
             )
           )
@@ -61,8 +88,8 @@ RSpec.describe KDirector::Dsls::Children::Github do
     context 'options are available via accessors' do
       let(:opts) do
         {
-          repo_name: 'name',
-          user: 'user',
+          repo_name: 'some_repo',
+          username: 'username',
           organization: 'organization'
         }
       end
@@ -70,13 +97,13 @@ RSpec.describe KDirector::Dsls::Children::Github do
       describe '#repo_name' do
         subject { instance.repo_name }
 
-        it { is_expected.to eq('name') }
+        it { is_expected.to eq('some_repo') }
       end
 
-      describe '#user' do
-        subject { instance.user }
+      describe '#username' do
+        subject { instance.username }
 
-        it { is_expected.to eq('user') }
+        it { is_expected.to eq('username') }
       end
 
       describe '#organization' do
