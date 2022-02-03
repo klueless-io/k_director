@@ -1,3 +1,10 @@
+## [0.7.1](https://github.com/klueless-io/k_director/compare/v0.7.0...v0.7.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* add support for github and blueprint to nuxt3 ([335befb](https://github.com/klueless-io/k_director/commit/335befbc427e156f9fe52407641fe720e22b2bb3))
+
 # [0.7.0](https://github.com/klueless-io/k_director/compare/v0.6.2...v0.7.0) (2022-02-03)
 
 
