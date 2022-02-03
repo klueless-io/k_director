@@ -9,25 +9,18 @@ module KDirector
       end
 
       def github(**opts, &block)
-        github = Dsl::Github.new(self, **opts)
+        github = KDirector::Dsls::Children::Github.new(self, **opts)
         github.instance_eval(&block)
 
         self
       end
 
       def blueprint(**opts, &block)
-        blueprint = Dsl::RubyGemBlueprint.new(self, **opts)
+        blueprint = KDirector::Dsls::Children::Blueprint.new(self, **opts)
         blueprint.instance_eval(&block)
 
         self
       end
-
-      # def blueprint(**opts, &block)
-      #   blueprint = Dsl::Blueprint.new(self, **opts)
-      #   blueprint.instance_eval(&block)
-
-      #   self
-      # end
 
       # def app(**opts, &block)
       #   app = Dsl::Nuxt3App.new(self, **opts)

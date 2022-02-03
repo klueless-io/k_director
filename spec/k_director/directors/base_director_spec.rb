@@ -243,19 +243,31 @@ RSpec.describe KDirector::Directors::BaseDirector do
       instance.add_file('sample-5.txt',
                         content: 'I am custom content')
 
+      instance.data(
+        first_name: 'John',
+        last_name: 'Doe'
+      )
+
+      instance.data(:something_complex,
+                    key: 'test-1',
+                    names: %w[john lisa mike])
+
+      instance.add_file('sample-6.txt',
+                        template: "I am custom template\nhello {{dom.first_name}} {{dom.last_name}}\nkey: {{dom.something_complex.key}}\nnames: {{dom.something_complex.names}}")
+
       instance.run_command('echo david')
       instance.run_script('echo david')
     end
 
-    # it '#scenario_1' do
-    #   config = KBuilder.configuration(:base_director_spec)
-    #   config.debug
-    #   instance.debug
-    #   instance.builder.debug
-    #   config.target_folders.debug
-    #   instance.play_actions
-    #   instance.k_builder.run_script("code .")
-    #   sleep 3
-    # end
+    fit '#scenario_1' do
+      # config = KBuilder.configuration(:base_director_spec)
+      # config.debug
+      # instance.debug
+      # instance.builder.debug
+      # config.target_folders.debug
+      # instance.play_actions
+      # instance.k_builder.run_script("code .")
+      # sleep 3
+    end
   end
 end

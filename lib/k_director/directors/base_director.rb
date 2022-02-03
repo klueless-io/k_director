@@ -124,6 +124,11 @@ module KDirector
       end
 
       def debug
+        debug_options
+        debug_dom
+      end
+
+      def debug_options
         log.section_heading director_name
 
         h = options.to_h.sort.to_h
@@ -131,6 +136,15 @@ module KDirector
           # requires k_funky
           log.kv(titleize.parse(key.to_s), h[key])
         end
+
+        nil
+      end
+
+      def debug_dom
+        log.section_heading 'DOM'
+
+        builder.debug
+
         nil
       end
 
