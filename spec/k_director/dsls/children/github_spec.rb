@@ -1,52 +1,109 @@
 # frozen_string_literal: true
-# # frozen_string_literal: true
 
-# KBuilder.configure(:github_spec) do |config|
-#   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
+KBuilder.configure(:github_spec) do |config|
+  base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
 
-#   config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
-#   config.target_folders.add(:app, base_folder)
-# end
+  config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
+  config.target_folders.add(:app, base_folder)
+end
 
-# Handlebars::Helpers.configure do |config|
-#   config_file = File.join(Gem.loaded_specs['handlebars-helpers'].full_gem_path, '.handlebars_helpers.json')
-#   config.helper_config_file = config_file
+RSpec.describe KDirector::Dsls::Children::Github do
+  let(:parent) { KDirector::Directors::BaseDirector.init(k_builder, **parent_opts) }
+  let(:k_builder) { KBuilder::BaseBuilder.init(KBuilder.configuration(:github_spec)) }
+  let(:parent_opts) { {} }
 
-#   string_config_file = File.join(Gem.loaded_specs['handlebars-helpers'].full_gem_path, '.handlebars_string_formatters.json')
-#   config.string_formatter_config_file = string_config_file
-# end
+  let(:instance) { described_class.new(parent, **opts) }
+  let(:opts) { {} }
 
-# RSpec.describe KDirector::Dsls::Children::Github do
-#   let(:parent) { KDirector::Directors::BaseDirector.init(k_builder, **parent_opts) }
-#   let(:k_builder) { KBuilder::BaseBuilder.init(KBuilder.configuration(:github_spec)) }
-#   let(:parent_opts) { {} }
+  describe 'initialize' do
+    subject { instance }
 
-#   let(:instance) { described_class.new(parent, **opts) }
-#   let(:opts) { {} }
+    it { is_expected.not_to be_nil }
 
-#   describe 'initialize' do
-#     subject { instance }
+    context 'populate .dom with options' do
+      subject { instance.builder.dom }
 
-#     it { is_expected.not_to be_nil }
-#   end
+      context 'default options' do
+        it do
+          env_user = ENV['GH_USER'] || ENV['GITHUB_USER']
+  
+          is_expected.to include(
+            github: include(
+              repo_name: be_nil,
+              user: env_user,
+              organization: be_nil)
+          )
+        end
+      end
 
-#   context 'setup parent director' do
-#     subject { parent }
+      context 'custom options' do
+        let(:opts) do
+          {
+            repo_name: 'name',
+            user: 'user',
+            organization: 'organization',
+          }
+        end
 
-#     it { is_expected.to be_a(KDirector::Directors::BaseDirector) }
+        it do
+          is_expected.to include(
+            github: include(
+              repo_name: 'name',
+              user: 'user',
+              organization: 'organization')
+          )
+        end
+      end
+    end
 
-#     context 'when not configured' do
-#       context '.options.repo_name' do
-#         subject { instance.options.repo.name }
+    context 'options are available via accessors' do
+      let(:opts) do
+        {
+          repo_name: 'name',
+          user: 'user',
+          organization: 'organization',
+        }
+      end
 
-#         it { is_expected.to be_nil }
-#       end
+      describe '#repo_name' do
+        subject { instance.repo_name }
+      
+        it { is_expected.to eq('name') }
+      end
 
-#       context '.options.repo_organization' do
-#         subject { instance.options.repo_organization }
+      describe '#user' do
+        subject { instance.user }
+      
+        it { is_expected.to eq('user') }
+      end
 
-#         it { is_expected.to be_nil }
-#       end
-#     end
-#   end
-# end
+      describe '#organization' do
+        subject { instance.organization }
+      
+        it { is_expected.to eq('organization') }
+      end
+    end
+  end
+
+  describe '#scenarios' do
+    subject { instance }
+
+    let(:opts) { { repo_name: 'xmen' } }
+
+    context 'list repositories' do
+      xit { instance.list_repositories }
+    end
+
+    context 'create repository' do
+      xit { instance.create_repository }
+    end
+
+    context 'open repository' do
+      xit { instance.open_repository }
+    end
+
+    context 'delete repository' do
+      xit { instance.delete_repository }
+    end
+  end
+end

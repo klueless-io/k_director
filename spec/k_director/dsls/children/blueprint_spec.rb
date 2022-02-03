@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-KBuilder.configure(:blueprint_dsl_spec) do |config|
+KBuilder.configure(:blueprint_spec) do |config|
   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
 
   config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
@@ -8,17 +8,12 @@ KBuilder.configure(:blueprint_dsl_spec) do |config|
   config.target_folders.add(:xmen, base_folder, 'xmen')
 end
 
-Handlebars::Helpers.configure do |config|
-  config.helper_config_file = File.join(Gem.loaded_specs['handlebars-helpers'].full_gem_path, '.handlebars_helpers.json')
-  config.string_formatter_config_file = File.join(Gem.loaded_specs['handlebars-helpers'].full_gem_path, '.handlebars_string_formatters.json')
-end
-
 RSpec.describe KDirector::Dsls::Children::Blueprint do
   let(:parent) { KDirector::Directors::BaseDirector.init(k_builder, **parent_opts) }
   let(:parent_opts) { {} }
 
   let(:instance) { described_class.new(parent, **opts) }
-  let(:k_builder) { KBuilder::BaseBuilder.init(KBuilder.configuration(:blueprint_dsl_spec)) }
+  let(:k_builder) { KBuilder::BaseBuilder.init(KBuilder.configuration(:blueprint_spec)) }
   let(:opts) { {} }
 
   describe 'initialize' do

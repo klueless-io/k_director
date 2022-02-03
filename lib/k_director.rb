@@ -3,6 +3,7 @@
 require 'k_log'
 require 'k_util'
 require 'k_builder'
+require 'k_ext/github'
 
 require_relative 'k_director/version'
 require_relative 'k_director/builders/actions_builder'
