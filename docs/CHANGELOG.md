@@ -1,3 +1,10 @@
+## [0.7.2](https://github.com/klueless-io/k_director/compare/v0.7.1...v0.7.2) (2022-02-03)
+
+
+### Bug Fixes
+
+* improve debug support ([6edb583](https://github.com/klueless-io/k_director/commit/6edb583e3aa467fbd77f4b30f2250dca9a170c7a))
+
 ## [0.7.1](https://github.com/klueless-io/k_director/compare/v0.7.0...v0.7.1) (2022-02-03)
 
 
