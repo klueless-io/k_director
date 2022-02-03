@@ -1,3 +1,10 @@
+## [0.7.3](https://github.com/klueless-io/k_director/compare/v0.7.2...v0.7.3) (2022-02-03)
+
+
+### Bug Fixes
+
+* alter internal github info ([ed77548](https://github.com/klueless-io/k_director/commit/ed77548eee2f1cdd0c9799f0842b0e44e79ed2f4))
+
 ## [0.7.2](https://github.com/klueless-io/k_director/compare/v0.7.1...v0.7.2) (2022-02-03)
 
 
