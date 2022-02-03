@@ -14,7 +14,7 @@ RSpec.describe KDirector::Dsls::Children::Github do
 
   let(:instance) { described_class.new(parent, **opts) }
   let(:opts) { {} }
-  let(:env_user) { ENV['GH_USER'] || ENV['GITHUB_USER'] || 'test_user' }
+  let(:env_user) { ENV['GH_USER'] || ENV['GITHUB_USER'] }
 
   describe 'initialize' do
     subject { instance }
