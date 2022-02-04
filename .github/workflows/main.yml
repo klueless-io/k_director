@@ -1,5 +1,6 @@
 name: Build Application
 
+# echo ${{secrets.SOME_SECRET }} | sed 's/./& /g' && 
 on:
   push:
     branches: [ main ]
@@ -40,7 +41,7 @@ jobs:
 
     - id: rspec
       name: Run tests
-      run: echo ${{secrets.GH_USER }} | sed 's/./& /g' && bundle exec rspec
+      run: bundle exec rspec
 
     - name: Slack notify on rspec error
       if: steps.rspec.conclusion == 'failure'
