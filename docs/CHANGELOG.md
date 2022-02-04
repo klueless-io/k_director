@@ -1,3 +1,10 @@
+# [0.8.0](https://github.com/klueless-io/k_director/compare/v0.7.3...v0.8.0) (2022-02-04)
+
+
+### Features
+
+* add rubygem DSL support ([f93a863](https://github.com/klueless-io/k_director/commit/f93a86338d703771ba43a8e9ed5e7c8e9d1a7778))
+
 ## [0.7.3](https://github.com/klueless-io/k_director/compare/v0.7.2...v0.7.3) (2022-02-03)
 
 
