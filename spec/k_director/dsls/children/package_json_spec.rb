@@ -439,4 +439,41 @@ RSpec.describe KDirector::Dsls::Children::PackageJson do
       end
     end
   end
+
+  describe '#set' do
+    include_context 'setup_temp_dir'
+    include_context 'basic configuration'
+
+    subject { director.package }
+
+    context 'when options are configured via builder' do
+      before :each do
+        director.npm_init
+                .production
+                .set('name', 'xmen')
+      end
+
+      it { is_expected.to have_key('name').and include('name' => 'xmen') }
+    end
+  end
+
+  describe '#sort' do
+    include_context 'setup_temp_dir'
+    include_context 'basic configuration'
+
+    subject { director.package.keys }
+
+    context 'when options are configured via builder' do
+      before :each do
+        director.npm_init
+                .development
+                .npm_add(yallist)
+                .production
+                .npm_add(boolbase)
+                .sort
+      end
+
+      it { is_expected.to eq(%w[name version description keywords license author main scripts dependencies devDependencies]) }
+    end
+  end
 end

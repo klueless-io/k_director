@@ -176,6 +176,18 @@ module KDirector
           self
         end
 
+        # Package.sort using `npx sort-package-json`
+        # ----------------------------------------------------------------------
+
+        # Sort the package.json keys using `npx sort-package-json`
+        def sort
+          run_command 'npx sort-package-json'
+
+          load
+
+          self
+        end
+
         # Dependency option
         # ----------------------------------------------------------------------
 
