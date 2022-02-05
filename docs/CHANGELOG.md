@@ -1,3 +1,10 @@
+# [0.9.0](https://github.com/klueless-io/k_director/compare/v0.8.1...v0.9.0) (2022-02-05)
+
+
+### Features
+
+* add package_json dsl support ([15b3ad7](https://github.com/klueless-io/k_director/commit/15b3ad7472a3374e646c391a7271fb7782636afe))
+
 ## [0.8.1](https://github.com/klueless-io/k_director/compare/v0.8.0...v0.8.1) (2022-02-05)
 
 
