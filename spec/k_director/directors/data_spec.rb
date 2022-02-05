@@ -2,7 +2,7 @@
 
 RSpec.describe KDirector::Directors::Data do
   let(:parent) { KDirector::Directors::BaseDirector.init(k_builder) }
-  let(:k_builder) { KBuilder::BaseBuilder.init(KBuilder.configuration(:base_director_spec)) }
+  let(:k_builder) { KBuilder::BaseBuilder.init(KConfig.configuration(:base_director_spec)) }
 
   let(:instance) { described_class.new(parent, name, **opts) }
   let(:name) { nil }

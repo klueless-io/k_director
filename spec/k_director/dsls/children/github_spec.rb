@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-KBuilder.configure(:github_spec) do |config|
+KConfig.configure(:github_spec) do |config|
   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
 
   config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
@@ -9,7 +9,7 @@ end
 
 RSpec.describe KDirector::Dsls::Children::Github do
   let(:parent) { KDirector::Directors::BaseDirector.init(k_builder, **parent_opts) }
-  let(:k_builder) { KBuilder::BaseBuilder.init(KBuilder.configuration(:github_spec)) }
+  let(:k_builder) { KBuilder::BaseBuilder.init(KConfig.configuration(:github_spec)) }
   let(:parent_opts) { {} }
 
   let(:instance) { described_class.new(parent, **opts) }

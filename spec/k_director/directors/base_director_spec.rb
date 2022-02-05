@@ -2,7 +2,7 @@
 
 class SampleBuilder < KDirector::Builders::ActionsBuilder; end
 
-KBuilder.configure(:base_director_spec) do |config|
+KConfig.configure(:base_director_spec) do |config|
   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
 
   config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
@@ -13,7 +13,7 @@ end
 
 RSpec.describe KDirector::Directors::BaseDirector do
   let(:instance) { described_class.new(k_builder, builder, **opts) }
-  let(:k_builder) { KBuilder::BaseBuilder.init(KBuilder.configuration(:base_director_spec)) }
+  let(:k_builder) { KBuilder::BaseBuilder.init(KConfig.configuration(:base_director_spec)) }
   let(:builder) { KDirector::Builders::ActionsBuilder.new }
   let(:opts) { {} }
 
@@ -52,6 +52,12 @@ RSpec.describe KDirector::Directors::BaseDirector do
       subject { instance.builder }
 
       it { is_expected.to be_a(KDirector::Builders::ActionsBuilder) }
+    end
+
+    describe '.configuration' do
+      subject { instance.configuration }
+
+      it { is_expected.to be_a(KConfig::Configuration).and respond_to(:target_folders) }
     end
 
     describe '.director_name' do
@@ -260,7 +266,7 @@ RSpec.describe KDirector::Directors::BaseDirector do
     end
 
     # fit '#scenario_1' do
-    #   # config = KBuilder.configuration(:base_director_spec)
+    #   # config = KConfig.configuration(:base_director_spec)
     #   # config.debug
     #   # instance.debug
     #   # instance.builder.debug

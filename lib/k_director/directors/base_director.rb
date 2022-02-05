@@ -59,6 +59,10 @@ module KDirector
         }.merge(opts)
       end
 
+      def configuration
+        k_builder.configuration
+      end
+
       def director_name
         @options.director_name
       end

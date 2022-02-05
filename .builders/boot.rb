@@ -40,10 +40,10 @@ def dasherize
 end
 
 def k_builder
-  @k_builder ||= KBuilder::BaseBuilder.init(KBuilder.configuration(CONFIG_KEY))
+  @k_builder ||= KBuilder::BaseBuilder.init(KConfig.configuration(CONFIG_KEY))
 end
 
-KBuilder.configure(CONFIG_KEY) do |config|
+KConfig.configure(CONFIG_KEY) do |config|
   builder_folder    = Dir.pwd
   base_folder       = File.expand_path('../', builder_folder)
   global_template   = File.expand_path('~/dev/kgems/k_templates/templates')
@@ -58,7 +58,7 @@ KBuilder.configure(CONFIG_KEY) do |config|
   # config.target_folders.add(:database             , :data, 'database')
 end
 
-KBuilder.configuration(CONFIG_KEY).debug
+KConfig.configuration(CONFIG_KEY).debug
 
 area = KManager.add_area(CONFIG_KEY)
 resource_manager = area.resource_manager

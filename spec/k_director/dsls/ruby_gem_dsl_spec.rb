@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-KBuilder.configure(:ruby_gem_spec) do |config|
+KConfig.configure(:ruby_gem_spec) do |config|
   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
 
   config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
@@ -10,7 +10,7 @@ end
 
 RSpec.describe KDirector::Dsls::RubyGemDsl do
   let(:instance) { described_class.init(k_builder, nil, **opts) }
-  let(:k_builder) { KBuilder::BaseBuilder.init(KBuilder.configuration(:base_director_spec)) }
+  let(:k_builder) { KBuilder::BaseBuilder.init(KConfig.configuration(:base_director_spec)) }
   let(:opts) { {} }
 
   describe 'initialize' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-KBuilder.configure(:blueprint_spec) do |config|
+KConfig.configure(:blueprint_spec) do |config|
   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
 
   config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
@@ -13,7 +13,7 @@ RSpec.describe KDirector::Dsls::Children::Blueprint do
   let(:parent_opts) { {} }
 
   let(:instance) { described_class.new(parent, **opts) }
-  let(:k_builder) { KBuilder::BaseBuilder.init(KBuilder.configuration(:blueprint_spec)) }
+  let(:k_builder) { KBuilder::BaseBuilder.init(KConfig.configuration(:blueprint_spec)) }
   let(:opts) { {} }
 
   describe 'initialize' do
@@ -236,7 +236,7 @@ RSpec.describe KDirector::Dsls::Children::Blueprint do
     end
 
     # it '#scenario_1' do
-    #   config = KBuilder.configuration(:base_director_spec)
+    #   config = KConfig.configuration(:base_director_spec)
     #   config.debug
     #   instance.debug
     #   instance.builder.debug
