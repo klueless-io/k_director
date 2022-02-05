@@ -259,7 +259,7 @@ module KDirector
         #   run_command "code #{package_file}"
         # end
 
-        # private
+        private
 
         def get_group(key)
           group = configuration.package_json.package_groups[key]

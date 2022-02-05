@@ -10,14 +10,21 @@ module KDirector
 
       def github(**opts, &block)
         github = KDirector::Dsls::Children::Github.new(self, **opts)
-        github.instance_eval(&block)
+        github.instance_eval(&block) if block_given?
+
+        self
+      end
+
+      def package_json(**opts, &block)
+        package_json = KDirector::Dsls::Children::PackageJson.new(self, **opts)
+        package_json.instance_eval(&block) if block_given?
 
         self
       end
 
       def blueprint(**opts, &block)
         blueprint = KDirector::Dsls::Children::Blueprint.new(self, **opts)
-        blueprint.instance_eval(&block)
+        blueprint.instance_eval(&block) if block_given?
 
         self
       end

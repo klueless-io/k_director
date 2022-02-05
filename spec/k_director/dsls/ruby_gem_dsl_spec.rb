@@ -9,20 +9,20 @@ KConfig.configure(:ruby_gem_spec) do |config|
 end
 
 RSpec.describe KDirector::Dsls::RubyGemDsl do
-  let(:instance) { described_class.init(k_builder, nil, **opts) }
+  let(:director) { described_class.init(k_builder, nil, **opts) }
   let(:k_builder) { KBuilder::BaseBuilder.init(KConfig.configuration(:base_director_spec)) }
   let(:opts) { {} }
 
   describe 'initialize' do
     describe '.k_builder' do
-      subject { instance.k_builder }
+      subject { director.k_builder }
 
       it { is_expected.to eq(k_builder) }
     end
   end
 
   describe '.template_base_folder' do
-    subject { instance.template_base_folder }
+    subject { director.template_base_folder }
 
     it { is_expected.to eq('ruby/gem') }
 
@@ -33,13 +33,29 @@ RSpec.describe KDirector::Dsls::RubyGemDsl do
     end
   end
 
+  context 'child directors' do
+    subject { director }
+
+    describe '#github' do
+      it { is_expected.to respond_to(:github) }
+    end
+
+    describe '#package_json' do
+      it { is_expected.to respond_to(:package_json) }
+    end
+
+    describe '#blueprint' do
+      it { is_expected.to respond_to(:blueprint) }
+    end
+  end
+
   describe '.dom' do
-    subject { instance.dom }
+    subject { director.dom }
 
     it { is_expected.to be_empty }
 
     describe '#github' do
-      before { instance.github(**opts, &block) }
+      before { director.github(**opts, &block) }
 
       let(:opts) { { repo_name: 'test-repo' } }
       let(:block) { nil }
@@ -49,10 +65,10 @@ RSpec.describe KDirector::Dsls::RubyGemDsl do
   end
 
   context 'actions' do
-    subject { instance.builder.last_action }
+    subject { director.builder.last_action }
 
     describe '#blueprint' do
-      before { instance.blueprint(**opts, &block) }
+      before { director.blueprint(**opts, &block) }
 
       describe '#add_file' do
         let(:block) { ->(_blueprint) { add_file('david.txt') } }
