@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'k_config'
 require 'k_log'
 require 'k_util'
 require 'k_builder'
@@ -12,6 +13,7 @@ require_relative 'k_director/directors/child_director'
 require_relative 'k_director/directors/data'
 require_relative 'k_director/dsls/children/blueprint'
 require_relative 'k_director/dsls/children/github'
+require_relative 'k_director/dsls/children/package_json_configuration'
 require_relative 'k_director/dsls/children/package_json'
 require_relative 'k_director/dsls/nuxt3_dsl'
 require_relative 'k_director/dsls/ruby_gem_dsl'
