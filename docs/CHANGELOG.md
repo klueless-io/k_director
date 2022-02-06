@@ -1,3 +1,10 @@
+## [0.10.1](https://github.com/klueless-io/k_director/compare/v0.10.0...v0.10.1) (2022-02-06)
+
+
+### Bug Fixes
+
+* package_json, add set by group, remove and re ove by group ([93317f8](https://github.com/klueless-io/k_director/commit/93317f8b590ac2551e72072e93ca9b7f0d54f568))
+
 # [0.10.0](https://github.com/klueless-io/k_director/compare/v0.9.0...v0.10.0) (2022-02-06)
 
 
