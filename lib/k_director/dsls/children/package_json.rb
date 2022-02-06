@@ -249,10 +249,36 @@ module KDirector
           @package_file = File.join(k_builder.target_folder, 'package.json')
         end
 
-        # # Getter for target folder
-        # def package_file
-        #   hash['package_file']
-        # end
+        # Remove package-lock.json
+        # ----------------------------------------------------------------------
+
+        def remove_package_lock
+          file = File.join(k_builder.target_folder, 'package-lock.json')
+
+          File.delete(file) if File.exist?(file)
+
+          self
+        end
+
+        # Remove yarn.lock
+        # ----------------------------------------------------------------------
+
+        def remove_yarn_lock
+          file = File.join(k_builder.target_folder, 'yarn.lock')
+
+          File.delete(file) if File.exist?(file)
+
+          self
+        end
+
+        # Create yarn.lock
+        # ----------------------------------------------------------------------
+
+        def create_yarn_lock
+          run_command 'yarn install --check-files'
+
+          self
+        end
 
         # -----------------------------------
         # Helpers

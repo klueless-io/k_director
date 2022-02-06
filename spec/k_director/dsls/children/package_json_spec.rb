@@ -549,4 +549,47 @@ RSpec.describe KDirector::Dsls::Children::PackageJson do
       it { is_expected.to eq(%w[name version description keywords license author main scripts dependencies devDependencies]) }
     end
   end
+
+  describe '#remove_package_lock' do
+    include_context 'setup_temp_dir'
+    include_context 'basic configuration'
+
+    let(:file) { File.join(target_folder, 'package-lock.json') }
+
+    before {
+      FileUtils.touch(file)
+      
+      director.remove_package_lock
+    }
+
+    it { expect(File.exist?(file)).to be_falsey }
+  end
+
+  describe '#remove_yarn_lock' do
+    include_context 'setup_temp_dir'
+    include_context 'basic configuration'
+
+    let(:file) { File.join(target_folder, 'yarn.lock') }
+
+    before {
+      FileUtils.touch(file)
+      
+      director.remove_yarn_lock
+    }
+
+    it { expect(File.exist?(file)).to be_falsey }
+  end
+
+  describe '#create_yarn_lock' do
+    include_context 'setup_temp_dir'
+    include_context 'basic configuration'
+
+    let(:file) { File.join(target_folder, 'yarn.lock') }
+
+    before {
+      director.create_yarn_lock
+    }
+
+    it { expect(File.exist?(file)).to be_truthy }
+  end
 end
