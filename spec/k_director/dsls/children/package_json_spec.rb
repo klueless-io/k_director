@@ -447,11 +447,19 @@ RSpec.describe KDirector::Dsls::Children::PackageJson do
     subject { director.package }
 
     context 'when options are configured via builder' do
-      before :each do
-        director.npm_init
-                .production
-                .set('name', 'xmen')
-      end
+      before(:each) { director.npm_init.set('name', 'xmen') }
+
+      it { is_expected.to have_key('name').and include('name' => 'xmen') }
+    end
+
+    context 'when key is not trimmed' do
+      before(:each) { director.npm_init.set(' name ', 'xmen') }
+
+      it { is_expected.to have_key('name').and include('name' => 'xmen') }
+    end
+
+    context 'when key is a symbol' do
+      before(:each) { director.npm_init.set(:name, 'xmen') }
 
       it { is_expected.to have_key('name').and include('name' => 'xmen') }
     end

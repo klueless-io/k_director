@@ -37,11 +37,11 @@ module KDirector
 
         # Setup the default package groups
         def set_default_package_groups
-          set_package_group('webpack'         , 'Webpack V5', %w[webpack webpack-cli webpack-dev-server])
-          set_package_group('swc'             , 'SWC Transpiler', %w[@swc/cli @swc/core swc-loader])
-          set_package_group('babel'           , 'Babel Transpiler', %w[@babel/core @babel/cli @babel/preset-env babel-loader])
-          set_package_group('typescript'      , 'Typescript', %w[typescript ts-loader])
-          set_package_group('semantic-release', 'Semantic Release', %w[semantic-release github:klueless-js/semantic-release-rubygem @semantic-release/changelog @semantic-release/git])
+          set_package_group('webpack'         , 'Webpack V5'        , %w[webpack webpack-cli webpack-dev-server])
+          set_package_group('swc'             , 'SWC Transpiler'    , %w[@swc/cli @swc/core swc-loader])
+          set_package_group('babel'           , 'Babel Transpiler'  , %w[@babel/core @babel/cli @babel/preset-env babel-loader])
+          set_package_group('typescript'      , 'Typescript'        , %w[typescript ts-loader])
+          set_package_group('semantic-release', 'Semantic Release'  , %w[semantic-release github:klueless-js/semantic-release-rubygem @semantic-release/changelog @semantic-release/git])
         end
 
         def debug

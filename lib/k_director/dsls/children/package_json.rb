@@ -169,6 +169,7 @@ module KDirector
         def set(key, value)
           load
 
+          key = key.to_s.strip
           @package[key] = value
 
           write
