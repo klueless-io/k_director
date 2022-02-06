@@ -1,3 +1,10 @@
+## [0.10.3](https://github.com/klueless-io/k_director/compare/v0.10.2...v0.10.3) (2022-02-06)
+
+
+### Bug Fixes
+
+* package_json and multi-settings #settings(**opts, group: nil) ([7f23a08](https://github.com/klueless-io/k_director/commit/7f23a08751c3bca7ea99685f33a95eeed8786e1a))
+
 ## [0.10.2](https://github.com/klueless-io/k_director/compare/v0.10.1...v0.10.2) (2022-02-06)
 
 
