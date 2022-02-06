@@ -530,6 +530,39 @@ RSpec.describe KDirector::Dsls::Children::PackageJson do
     end
   end
 
+  describe '#settings' do
+    include_context 'setup_temp_dir'
+    include_context 'basic configuration'
+
+    subject { director.package }
+
+    context 'when standard package settings' do
+      before(:each) do
+        director
+          .npm_init
+          .settings(name: 'xmen', version: '1.0.0', description: 'more xmen')
+      end
+
+      it {
+        is_expected.to include('name' => 'xmen')
+          .and have_key('version')
+          .and include('version' => '1.0.0')
+      }
+    end
+
+    context 'when package->script settings' do
+      subject { director.package['scripts'] }
+
+      before(:each) do
+        director
+          .npm_init
+          .settings(run: 'echo run', build: 'echo build', group: 'scripts')
+      end
+
+      it { is_expected.to include('run' => 'echo run').and include('build' => 'echo build') }
+    end
+  end
+
   describe '#sort' do
     include_context 'setup_temp_dir'
     include_context 'basic configuration'

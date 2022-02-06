@@ -159,6 +159,28 @@ module KDirector
           @package
         end
 
+        # Package.settings is a hash of settings that can be applied to package.json
+        # ----------------------------------------------------------------------
+
+        # Settings
+        #
+        # Add multiple settings to the package.json
+        # @param opts [Hash] Hash of settings to add
+        #   opts[:group] is the group to add the settings to
+        def settings(**opts)
+          load
+
+          group = opts.delete(:group)
+
+          opts.each do |key, value|
+            set_key_value(key, value, group: group)
+          end
+
+          write
+
+          self
+        end
+
         # Package.set
         # ----------------------------------------------------------------------
 
@@ -166,15 +188,7 @@ module KDirector
         def set(key, value, group: nil)
           load
 
-          key = key.to_s.strip
-
-          if group.nil?
-            @package[key] = value
-          else
-            group = group.to_s.strip
-            @package[group] = {} unless @package[group]
-            @package[group][key] = value
-          end
+          set_key_value(key, value, group: group)
 
           write
 
@@ -329,6 +343,18 @@ module KDirector
           raise KConfig::PackageJson::Error, "unknown package group: #{key}" if group.nil?
 
           group
+        end
+
+        def set_key_value(key, value, group: nil)
+          key = key.to_s.strip
+
+          if group.nil?
+            @package[key] = value
+          else
+            group = group.to_s.strip
+            @package[group] = {} unless @package[group]
+            @package[group][key] = value
+          end
         end
 
         def run_command(command)

@@ -55,7 +55,6 @@ module KDirector
                               autoprefixer@latest
                             ])
 
-          # this does not work yet
           set_package_group('storybook-nuxt'  , 'Storybook for (Vite/Nuxt)' , %w[
                               @storybook/vue3@6.4.18
                               @storybook/addon-postcss@2.0.0
@@ -63,7 +62,7 @@ module KDirector
                               storybook-builder-vite
                             ])
 
-          # Currently these two need to be foreced
+          # Currently these two need to be forced
           # @storybook/addon-docs@6.4.18
           # @storybook/addon-essentials@6.4.18
         end
