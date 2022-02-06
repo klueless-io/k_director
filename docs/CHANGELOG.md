@@ -1,3 +1,11 @@
+## [0.10.2](https://github.com/klueless-io/k_director/compare/v0.10.1...v0.10.2) (2022-02-06)
+
+
+### Bug Fixes
+
+* package_json, remove_package_lcok, remove_yarn_locak, create_yarn_lock ([d69c6a5](https://github.com/klueless-io/k_director/commit/d69c6a53a80551cdf5ac73024de8d2e597c37614))
+* package_json, remove_package_lcok, remove_yarn_locak, create_yarn_lock ([fdeef48](https://github.com/klueless-io/k_director/commit/fdeef481763160ca0c8d306491d7eb2e29536641))
+
 ## [0.10.1](https://github.com/klueless-io/k_director/compare/v0.10.0...v0.10.1) (2022-02-06)
 
 
