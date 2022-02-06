@@ -1,3 +1,16 @@
+# [0.10.0](https://github.com/klueless-io/k_director/compare/v0.9.0...v0.10.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* package_json set key converted to string and stripped ([784b33d](https://github.com/klueless-io/k_director/commit/784b33db2a045e8273e4e5a30747f0b05cc50cfd))
+
+
+### Features
+
+* add package_json dsl support to nuxt3 and rubygem ([9b4650d](https://github.com/klueless-io/k_director/commit/9b4650d48deaeb158ef25300b12f9de5725bf2c0))
+* add sort package json keys to package_json dsl ([90e2041](https://github.com/klueless-io/k_director/commit/90e2041759714faa1333c51226102e7ab8041a0a))
+
 # [0.9.0](https://github.com/klueless-io/k_director/compare/v0.8.1...v0.9.0) (2022-02-05)
 
 
