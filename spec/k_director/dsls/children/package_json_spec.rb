@@ -556,11 +556,11 @@ RSpec.describe KDirector::Dsls::Children::PackageJson do
 
     let(:file) { File.join(target_folder, 'package-lock.json') }
 
-    before {
+    before do
       FileUtils.touch(file)
-      
+
       director.remove_package_lock
-    }
+    end
 
     it { expect(File.exist?(file)).to be_falsey }
   end
@@ -571,11 +571,11 @@ RSpec.describe KDirector::Dsls::Children::PackageJson do
 
     let(:file) { File.join(target_folder, 'yarn.lock') }
 
-    before {
+    before do
       FileUtils.touch(file)
-      
+
       director.remove_yarn_lock
-    }
+    end
 
     it { expect(File.exist?(file)).to be_falsey }
   end
@@ -586,9 +586,9 @@ RSpec.describe KDirector::Dsls::Children::PackageJson do
 
     let(:file) { File.join(target_folder, 'yarn.lock') }
 
-    before {
+    before do
       director.create_yarn_lock
-    }
+    end
 
     it { expect(File.exist?(file)).to be_truthy }
   end
