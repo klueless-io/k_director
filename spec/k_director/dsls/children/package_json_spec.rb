@@ -463,6 +463,71 @@ RSpec.describe KDirector::Dsls::Children::PackageJson do
 
       it { is_expected.to have_key('name').and include('name' => 'xmen') }
     end
+
+    context 'when group option provided' do
+      subject { director.package['scripts'] }
+
+      before(:each) do
+        director
+          .npm_init
+          .set('build', 'build something', group: 'scripts')
+          .set('run', 'run something', group: 'scripts')
+      end
+      it { is_expected.to include('build' => 'build something').and include('run' => 'run something') }
+    end
+  end
+
+  describe '#remove' do
+    include_context 'setup_temp_dir'
+    include_context 'basic configuration'
+
+    subject { director.package }
+
+    context 'when options are configured via builder' do
+      before(:each) do
+        director
+          .npm_init
+          .set('name', 'xmen')
+          .remove('name')
+      end
+
+      it { is_expected.not_to have_key('name') }
+    end
+
+    context 'when key is not trimmed' do
+      before(:each) do
+        director
+          .npm_init
+          .set('name', 'xmen')
+          .remove('name')
+      end
+
+      it { is_expected.not_to have_key('name') }
+    end
+
+    context 'when key is a symbol' do
+      before(:each) do
+        director
+          .npm_init
+          .set('name', 'xmen')
+          .remove(:name)
+      end
+
+      it { is_expected.not_to have_key('name') }
+    end
+
+    context 'when group option provided' do
+      subject { director.package['scripts'] }
+
+      before(:each) do
+        director
+          .npm_init
+          .set('build', 'build something', group: 'scripts')
+          .remove('build', group: 'scripts')
+      end
+
+      it { is_expected.not_to include('build') }
+    end
   end
 
   describe '#sort' do

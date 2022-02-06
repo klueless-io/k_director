@@ -99,7 +99,7 @@ module KDirector
         def load
           raise KDirector::Error, 'package.json does not exist' unless File.exist?(package_file)
 
-          puts 'loading...'
+          # puts 'loading...'
 
           content = File.read(package_file)
           @package = JSON.parse(content)
@@ -109,7 +109,7 @@ module KDirector
 
         # Write the package.json file
         def write
-          puts 'writing...'
+          # puts 'writing...'
 
           content = JSON.pretty_generate(@package)
 
@@ -120,22 +120,19 @@ module KDirector
 
         # Remove a script reference by key
         def remove_script(key)
-          load
+          remove(key, group: 'scripts')
+          # load
 
-          @package['scripts']&.delete(key)
+          # @package['scripts']&.delete(key)
 
-          write
+          # write
 
           self
         end
 
         # Add a script with key and value (command line to run)
         def add_script(key, value)
-          load
-
-          @package['scripts'][key] = value
-
-          write
+          set(key, value, group: 'scripts')
 
           self
         end
@@ -166,11 +163,37 @@ module KDirector
         # ----------------------------------------------------------------------
 
         # Set a property value in the package
-        def set(key, value)
+        def set(key, value, group: nil)
           load
 
           key = key.to_s.strip
-          @package[key] = value
+
+          if group.nil?
+            @package[key] = value
+          else
+            group = group.to_s.strip
+            @package[group] = {} unless @package[group]
+            @package[group][key] = value
+          end
+
+          write
+
+          self
+        end
+
+        def remove(key, group: nil)
+          load
+
+          key = key.to_s.strip
+
+          if group.nil?
+            @package.delete(key)
+          else
+            group = group.to_s.strip
+            @package[group]&.delete(key)
+          end
+
+          @package['scripts']&.delete(key)
 
           write
 
