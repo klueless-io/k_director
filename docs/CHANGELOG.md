@@ -1,3 +1,10 @@
+# [0.11.0](https://github.com/klueless-io/k_director/compare/v0.10.4...v0.11.0) (2022-02-07)
+
+
+### Features
+
+* move github, blueprint and package_json fluent accessors onto BaseDirector ([88fa3fd](https://github.com/klueless-io/k_director/commit/88fa3fd0df530bef3731f0b4a62369d925df2fa5))
+
 ## [0.10.4](https://github.com/klueless-io/k_director/compare/v0.10.3...v0.10.4) (2022-02-07)
 
 
