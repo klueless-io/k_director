@@ -1,3 +1,10 @@
+## [0.11.1](https://github.com/klueless-io/k_director/compare/v0.11.0...v0.11.1) (2022-02-07)
+
+
+### Bug Fixes
+
+* move add, oadd, tadd, fadd from blueprint_director to base_director ([caab926](https://github.com/klueless-io/k_director/commit/caab92618406a072c3e326a3a640f7c6a4b71f03))
+
 # [0.11.0](https://github.com/klueless-io/k_director/compare/v0.10.4...v0.11.0) (2022-02-07)
 
 
