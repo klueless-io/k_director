@@ -1,3 +1,10 @@
+## [0.10.4](https://github.com/klueless-io/k_director/compare/v0.10.3...v0.10.4) (2022-02-07)
+
+
+### Bug Fixes
+
+* add active option so that child directors can be suppressed or executed ([8a57617](https://github.com/klueless-io/k_director/commit/8a57617eea20dd9a020aec329bd994b3c444f087))
+
 ## [0.10.3](https://github.com/klueless-io/k_director/compare/v0.10.2...v0.10.3) (2022-02-06)
 
 
