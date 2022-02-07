@@ -33,22 +33,6 @@ RSpec.describe KDirector::Dsls::RubyGemDsl do
     end
   end
 
-  context 'child directors' do
-    subject { director }
-
-    describe '#github' do
-      it { is_expected.to respond_to(:github) }
-    end
-
-    describe '#package_json' do
-      it { is_expected.to respond_to(:package_json) }
-    end
-
-    describe '#blueprint' do
-      it { is_expected.to respond_to(:blueprint) }
-    end
-  end
-
   describe '.dom' do
     subject { director.dom }
 

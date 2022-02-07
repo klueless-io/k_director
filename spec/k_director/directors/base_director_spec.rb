@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+class InsideBlock
+  class << self
+    attr_reader :name
+  end
+
+  class << self
+    attr_writer :name
+  end
+end
+
 class SampleBuilder < KDirector::Builders::ActionsBuilder; end
 
 KConfig.configure(:base_director_spec) do |config|
@@ -240,6 +250,73 @@ RSpec.describe KDirector::Directors::BaseDirector do
           played: false,
           script: 'echo david'
         )
+      end
+    end
+  end
+
+  context 'child directors' do
+    subject { instance }
+
+    describe '#github' do
+      it { is_expected.to respond_to(:github) }
+
+      context 'when block given' do
+        subject { InsideBlock.name }
+
+        before do
+          InsideBlock.name = nil
+          instance.github { |_| InsideBlock.name = 'github' }
+        end
+
+        it { is_expected.to eq('github') }
+
+        context 'when option active is false' do
+          let(:opts) { { active: false } }
+
+          it { is_expected.to eq(nil) }
+        end
+      end
+    end
+
+    describe '#package_json' do
+      it { is_expected.to respond_to(:package_json) }
+
+      context 'when block given' do
+        subject { InsideBlock.name }
+
+        before do
+          InsideBlock.name = nil
+          instance.package_json { |_| InsideBlock.name = 'package_json' }
+        end
+
+        it { is_expected.to eq('package_json') }
+
+        # context 'when option active is false' do
+        #   let(:opts) { { active: false } }
+
+        #   it { is_expected.to eq(nil) }
+        # end
+      end
+    end
+
+    describe '#blueprint' do
+      it { is_expected.to respond_to(:blueprint) }
+
+      context 'when block given' do
+        subject { InsideBlock.name }
+
+        before do
+          InsideBlock.name = nil
+          instance.blueprint { |_| InsideBlock.name = 'blueprint' }
+        end
+
+        it { is_expected.to eq('blueprint') }
+
+        context 'when option active is false' do
+          let(:opts) { { active: false } }
+
+          it { is_expected.to eq(nil) }
+        end
       end
     end
   end
