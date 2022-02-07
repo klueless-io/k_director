@@ -259,8 +259,8 @@ module KDirector
         # rubocop:enable Naming/AccessorMethodName
 
         # Setter for package file
-        def package_file=(_value)
-          @package_file = File.join(k_builder.target_folder, 'package.json')
+        def package_file=(value)
+          @package_file = File.join(k_builder.target_folder, value)
         end
 
         # Remove package-lock.json

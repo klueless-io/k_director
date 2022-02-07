@@ -1,12 +1,5 @@
 # frozen_string_literal: true
 
-# KConfig.configure(:package_json_spec) do |config|
-#   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
-
-#   config.template_folders.add(:template, 'spec', '.templates') # Dir.pwd
-#   config.target_folders.add(:app, base_folder)
-# end
-
 RSpec.describe KDirector::Dsls::Children::PackageJson do
   let(:k_config) { KConfig }
 

@@ -36,12 +36,18 @@ module KDirector
         end
 
         # Setup the default package groups
+        # rubocop:disable Metrics/MethodLength
         def set_default_package_groups
           set_package_group('webpack'         , 'Webpack V5'                , %w[webpack webpack-cli webpack-dev-server])
           set_package_group('swc'             , 'SWC Transpiler'            , %w[@swc/cli @swc/core swc-loader])
           set_package_group('babel'           , 'Babel Transpiler'          , %w[@babel/core @babel/cli @babel/preset-env babel-loader])
           set_package_group('typescript'      , 'Typescript'                , %w[typescript ts-loader])
-          set_package_group('semver-ruby'     , 'Semantic Release for Ruby' , %w[semantic-release github:klueless-js/semantic-release-rubygem @semantic-release/changelog @semantic-release/git])
+          set_package_group('semver-ruby'     , 'Semantic Release for Ruby' , %w[
+                              semantic-release
+                              @semantic-release/changelog
+                              @semantic-release/git
+                              @klueless-js/semantic-release-rubygem@github:klueless-js/semantic-release-rubygem
+                            ])
 
           set_package_group('semver-nuxt'     , 'Semantic Release for Nuxt' , %w[
                               semantic-release
@@ -66,6 +72,7 @@ module KDirector
           # @storybook/addon-docs@6.4.18
           # @storybook/addon-essentials@6.4.18
         end
+        # rubocop:enable Metrics/MethodLength
 
         def debug
           log.structure(package_groups, convert_data_to: :open_struct)

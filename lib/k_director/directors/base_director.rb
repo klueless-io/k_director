@@ -32,6 +32,7 @@ module KDirector
         @options.template_base_folder ||= default_template_base_folder
         @options.on_exist             ||= :skip       # %i[skip write compare]
         @options.on_action            ||= :queue      # %i[queue execute]
+        @options.active = true unless defined?(@options.active)
       end
 
       def data(name = nil, **opts)
@@ -55,12 +56,17 @@ module KDirector
         {
           on_exist: @options.on_exist,
           on_action: @options.on_action,
-          template_base_folder: @options.template_base_folder
+          template_base_folder: @options.template_base_folder,
+          active: @options.active
         }.merge(opts)
       end
 
       def configuration
         k_builder.configuration
+      end
+
+      def active?
+        @options.active == true
       end
 
       def director_name

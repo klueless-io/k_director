@@ -60,6 +60,30 @@ RSpec.describe KDirector::Directors::BaseDirector do
       it { is_expected.to be_a(KConfig::Configuration).and respond_to(:target_folders) }
     end
 
+    describe '.active?' do
+      subject { instance.active? }
+
+      it { is_expected.to be_truthy }
+
+      context 'when active is nil' do
+        let(:opts) { { active: nil } }
+
+        it { is_expected.to be_falsey }
+      end
+
+      context 'when active is false' do
+        let(:opts) { { active: false } }
+
+        it { is_expected.to be_falsey }
+      end
+
+      context 'when active is true' do
+        let(:opts) { { active: true } }
+
+        it { is_expected.to be_truthy }
+      end
+    end
+
     describe '.director_name' do
       subject { instance.director_name }
 
@@ -111,7 +135,8 @@ RSpec.describe KDirector::Directors::BaseDirector do
       is_expected.to include(
         on_exist: :skip,
         on_action: :queue,
-        template_base_folder: ''
+        template_base_folder: '',
+        active: true
       )
     end
 
@@ -120,14 +145,16 @@ RSpec.describe KDirector::Directors::BaseDirector do
         {
           template_base_folder: 'xmen',
           on_exist: :write,
-          on_action: :run
+          on_action: :run,
+          active: false
         }
       end
       it do
         is_expected.to include(
           on_exist: :write,
           on_action: :run,
-          template_base_folder: 'xmen'
+          template_base_folder: 'xmen',
+          active: false
         )
       end
     end
