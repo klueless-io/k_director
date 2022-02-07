@@ -197,6 +197,141 @@ RSpec.describe KDirector::Directors::BaseDirector do
   context 'actions' do
     subject { instance.builder.last_action }
 
+    describe '#add' do
+      before { instance.add(output_file, **opts) }
+
+      let(:output_file) { 'output_file.txt' }
+      let(:opts) { {} }
+
+      it 'should have add_file action' do
+        is_expected.to include(
+          action: :add_file,
+          file: output_file,
+          opts: include(
+            on_exist: :skip,
+            template_file: output_file
+          )
+        )
+      end
+
+      context 'when opts[:template_base_folder] is set' do
+        let(:opts) { { template_base_folder: 'xmen' } }
+
+        it 'should have a custom template_file' do
+          is_expected.to include(
+            action: :add_file,
+            file: output_file,
+            opts: include(
+              on_exist: :skip,
+              template_file: 'xmen/output_file.txt'
+            )
+          )
+        end
+      end
+
+      context 'when template_subfolder is set' do
+        let(:opts) { { template_subfolder: 'subfolder' } }
+
+        it 'should have a custom template tile' do
+          is_expected.to include(
+            action: :add_file,
+            file: output_file,
+            opts: include(
+              on_exist: :skip,
+              template_file: 'subfolder/output_file.txt'
+            )
+          )
+        end
+      end
+
+      context 'when template_file is set' do
+        let(:opts) { { template_file: 'template_file.txt' } }
+
+        it 'should have a custom template file' do
+          is_expected.to include(
+            action: :add_file,
+            file: output_file,
+            opts: include(
+              on_exist: :skip,
+              template_file: 'template_file.txt'
+            )
+          )
+        end
+
+        context 'and template_subfolder is set' do
+          let(:opts) do
+            {
+              template_file: 'template_file.txt',
+              template_subfolder: 'subfolder'
+            }
+          end
+
+          it 'should have a custom template file' do
+            is_expected.to include(
+              action: :add_file,
+              file: output_file,
+              opts: include(
+                on_exist: :skip,
+                template_file: 'subfolder/template_file.txt'
+              )
+            )
+          end
+
+          context 'and template_base_folder is set' do
+            let(:opts) do
+              {
+                template_file: 'template_file.txt',
+                template_subfolder: 'subfolder',
+                template_base_folder: 'xmen'
+              }
+            end
+
+            it 'should have a custom template file' do
+              is_expected.to include(
+                action: :add_file,
+                file: output_file,
+                opts: include(
+                  on_exist: :skip,
+                  template_file: 'xmen/subfolder/template_file.txt'
+                )
+              )
+            end
+          end
+        end
+      end
+    end
+
+    context 'when using quick overrides (#oadd, #tadd, #fadd)' do
+      subject { instance.builder.last_action[:opts] }
+
+      let(:output_file) { 'output_file.txt' }
+      let(:opts) { {} }
+
+      describe '#oadd (open the output file)' do
+        before { instance.oadd(output_file, **opts) }
+
+        it 'should open the output_file' do
+          is_expected.to include(open: true)
+        end
+      end
+
+      describe '#tadd (open the template file)' do
+        before { instance.tadd(output_file, **opts) }
+
+        it 'should open the template_file' do
+          is_expected.to include(open_template: true)
+        end
+      end
+
+      describe '#fadd (force write the output file)' do
+        before { instance.fadd(output_file, **opts) }
+
+        it 'should open the template_file' do
+          is_expected.to include(on_exist: :write)
+        end
+      end
+    end
+
     describe '#add_file' do
       before { instance.add_file('david.txt') }
 

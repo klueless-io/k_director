@@ -89,6 +89,37 @@ module KDirector
         @options.on_action
       end
 
+      # Add a single file into the code base
+      #
+      # This is a wrapper around add_file that will add the file to the codebase using template path rules
+      #
+      # @param [String] output_filename The output file name, this can be a relative path
+      # @param [Hash] **opts The options
+      # @option opts [String] :template_filename Template filename can be set or it will default to the same value as the output file name
+      # @option opts [String] :template_subfolder Template subfolder
+      def add(output_file, **opts)
+        template_file = opts[:template_file] || output_file
+        template_parts = [template_base_folder, opts[:template_subfolder], template_file].reject(&:blank?)
+        template_path = File.join(*template_parts)
+
+        # maybe template_file should be renamed to template_path in k_builder
+        opts[:template_file] = template_path
+
+        add_file(output_file, **opts)
+      end
+
+      def oadd(name, **opts)
+        add(name, **{ open: true          }.merge(opts))
+      end
+
+      def tadd(name, **opts)
+        add(name, **{ open_template: true }.merge(opts))
+      end
+
+      def fadd(name, **opts)
+        add(name, **{ on_exist: :write    }.merge(opts))
+      end
+
       # Add a file to target folder
       def add_file(file, **opts)
         opts = {
