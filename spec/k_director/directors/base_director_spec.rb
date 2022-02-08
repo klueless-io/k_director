@@ -192,8 +192,8 @@ RSpec.describe KDirector::Directors::BaseDirector do
 
           describe '#typed_dom' do
             subject { instance.typed_dom }
-  
-            it { is_expected.to have_attributes(a: 1, b: 2, child: have_attributes(a: 1, b:2)) }
+
+            it { is_expected.to have_attributes(a: 1, b: 2, child: have_attributes(a: 1, b: 2)) }
           end
         end
       end
