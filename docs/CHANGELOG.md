@@ -1,3 +1,10 @@
+## [0.11.3](https://github.com/klueless-io/k_director/compare/v0.11.2...v0.11.3) (2022-02-08)
+
+
+### Bug Fixes
+
+* add simple dsl ([0fd61ab](https://github.com/klueless-io/k_director/commit/0fd61abbe90a136c96b750fcf7456bc46aa73463))
+
 ## [0.11.2](https://github.com/klueless-io/k_director/compare/v0.11.1...v0.11.2) (2022-02-08)
 
 
