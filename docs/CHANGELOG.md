@@ -1,3 +1,11 @@
+## [0.11.2](https://github.com/klueless-io/k_director/compare/v0.11.1...v0.11.2) (2022-02-08)
+
+
+### Bug Fixes
+
+* add typed_dom to base_director ([22ee75d](https://github.com/klueless-io/k_director/commit/22ee75da20cd00fe1f48f7027775b59dcf1c17a5))
+* move add, oadd, tadd, fadd from blueprint_director to base_director ([82f6aa0](https://github.com/klueless-io/k_director/commit/82f6aa02311ec04b9cb716846630274700deefb5))
+
 ## [0.11.1](https://github.com/klueless-io/k_director/compare/v0.11.0...v0.11.1) (2022-02-07)
 
 
