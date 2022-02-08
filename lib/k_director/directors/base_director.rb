@@ -51,6 +51,10 @@ module KDirector
         builder.dom
       end
 
+      def typed_dom
+        builder.build
+      end
+
       # Used by child directors to inherit options from parent
       def inherited_opts(**opts)
         {
