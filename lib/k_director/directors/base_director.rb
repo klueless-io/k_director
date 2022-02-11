@@ -10,12 +10,22 @@ module KDirector
       class << self
         def init(k_builder, builder = nil, **opts)
           if builder.nil?
-            builder = KDirector::Builders::ActionsBuilder.new
+            builder = builder_type.new
           else
             builder.reset
           end
 
           new(k_builder, builder, **opts)
+        end
+
+        def builder_type
+          return @builder_type if defined? @builder_type
+
+          @builder_type = KDirector::Builders::ActionsBuilder
+        end
+
+        def default_builder_type(type)
+          @builder_type = type
         end
       end
 

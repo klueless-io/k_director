@@ -12,6 +12,10 @@ end
 
 class SampleBuilder < KDirector::Builders::ActionsBuilder; end
 
+class SampleDirector < KDirector::Directors::BaseDirector
+  default_builder_type(KDirector::Builders::DomBuilder)
+end
+
 KConfig.configure(:base_director_spec) do |config|
   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
 
@@ -43,10 +47,16 @@ RSpec.describe KDirector::Directors::BaseDirector do
         it { is_expected.to be_a(KDirector::Builders::ActionsBuilder) }
       end
 
-      context 'when custom builder' do
+      context 'when custom builder supplied in constructor' do
         let(:builder) { SampleBuilder.new }
 
         it { is_expected.to be_a(SampleBuilder) }
+      end
+
+      context 'when custom builder supplied via #default_builder_type' do
+        let(:instance) { SampleDirector.init(k_builder) }
+
+        it { is_expected.to be_a(KDirector::Builders::DomBuilder) }
       end
     end
   end
