@@ -1,3 +1,10 @@
+# [0.13.0](https://github.com/klueless-io/k_director/compare/v0.12.1...v0.13.0) (2022-02-11)
+
+
+### Features
+
+* dom builder set method now uses value: and will support hashes as a value ([24145a1](https://github.com/klueless-io/k_director/commit/24145a15d03b9670a605846b5c1dcb4635bb374d))
+
 ## [0.12.1](https://github.com/klueless-io/k_director/compare/v0.12.0...v0.12.1) (2022-02-11)
 
 
