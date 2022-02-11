@@ -1,3 +1,10 @@
+# [0.12.0](https://github.com/klueless-io/k_director/compare/v0.11.3...v0.12.0) (2022-02-11)
+
+
+### Features
+
+* split dom_builder out from actions_builder ([f728e0e](https://github.com/klueless-io/k_director/commit/f728e0e04ef668928ed78ed6e008c3996a2023e8))
+
 ## [0.11.3](https://github.com/klueless-io/k_director/compare/v0.11.2...v0.11.3) (2022-02-08)
 
 
