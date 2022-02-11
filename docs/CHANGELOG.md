@@ -1,3 +1,10 @@
+## [0.12.1](https://github.com/klueless-io/k_director/compare/v0.12.0...v0.12.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* builder can be configured via #default_builder_type ([f82c46f](https://github.com/klueless-io/k_director/commit/f82c46f10aea06b154d5ac957e71cce1216cae4a))
+
 # [0.12.0](https://github.com/klueless-io/k_director/compare/v0.11.3...v0.12.0) (2022-02-11)
 
 
