@@ -17,18 +17,18 @@ module KDirector
       # Set many key/value pairs gainst a group
       #
       # example:
-      #   set_many(:github, repo_name: 'repo-name', organization: 'org-name')
+      #   group_set(:github, repo_name: 'repo-name', organization: 'org-name')
       def group_set(group = nil, **opts)
         return if group.nil? && opts.empty?
 
         if group.nil?
           opts.each do |key, value|
-            set(key, value)
+            set(key, value: value)
           end
         else
           dom[group] = {} if opts.empty? # initialize the group name if no options are provided
           opts.each do |key, value|
-            set(group, key, value)
+            set(group, key, value: value)
           end
         end
       end
@@ -39,36 +39,39 @@ module KDirector
       # - initialize key/array pairs
       #
       # example:
-      #   set(:a, 1)
-      #   set(:a, [])
-      #   set(:a, [1, 2, 3])
-      #   set(:a, some_value, default_value: 'use if not supplied')
-      #   set(:a, :b, 'nested value')
-      #   set(:a, :b, :c, 'deeply nested value')
-      #   set(:a, :b, :c, :d, :e, :f, 'depth is no barrier')
-      def set(*keyset_value, default_value: nil)
-        size = keyset_value.size
+      #   set(:a, value: 1)
+      #   set(:a, value: [])
+      #   set(:a, value: [1, 2, 3])
+      #   set(:a, value: { a: 1, b: 2 })
+      #   set(:a, value: some_value, default_value: 'use if not supplied')
+      #   set(:a, value: :b, 'nested value')
+      #   set(:a, value: :b, :c, 'deeply nested value')
+      #   set(:a, value: :b, :c, :d, :e, :f, 'depth is no barrier')
+      def set(*keys, value: nil, default_value: nil)
+        size = keys.size
 
-        raise ArgumentError, 'set requires 2 or more arguments' if size < 2
+        raise ArgumentError, 'set requires 1 or more keys' if size < 1
 
-        target = initialize_hierarchy(keyset_value)
+        target = initialize_hierarchy(keys)
 
-        set_kv(target, keyset_value[size - 2], keyset_value[size - 1], default_value: default_value)
+        set_kv(target, keys[size - 1], value, default_value: default_value)
       end
 
       # add value to array
-      #   set(:a, [])
-      #   add(:a, 1])
-      #   add(:a, 2])
-      #   add(:a, 3])
-      def add(*keyset_value, default_value: nil)
-        size = keyset_value.size
+      #   add(:a, 1)
+      #   add(:a, 2)
+      #   add(:a, 3)
+      #   add(:a, {key: 1})
+      #   add(:a, {key: 2})
+      #   add(:a, {key: 3})
+      def add(*keys, value: nil, default_value: nil)
+        size = keys.size
 
-        raise ArgumentError, 'add requires 2 or more arguments' if size < 2
+        raise ArgumentError, 'add requires 1 or more keys' if size < 1
 
-        target = initialize_hierarchy(keyset_value)
+        target = initialize_hierarchy(keys)
 
-        add_kv(target, keyset_value[size - 2], keyset_value[size - 1], default_value: default_value)
+        add_kv(target, keys[size - 1], value, default_value: default_value)
       end
 
       def debug
@@ -85,12 +88,12 @@ module KDirector
 
       private
 
-      def initialize_hierarchy(keys_value)
+      def initialize_hierarchy(keys)
         target = @dom
 
-        return target unless keys_value.size > 2
+        return target unless keys.size > 1
 
-        keys_value.slice(0..-3).each_with_index do |key, _index|
+        keys.slice(0..-2).each_with_index do |key, _index|
           target[key] = {} unless target.key?(key)
           target = target[key]
         end

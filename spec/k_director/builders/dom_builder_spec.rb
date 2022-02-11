@@ -9,20 +9,26 @@ RSpec.describe KDirector::Builders::DomBuilder do
     it { is_expected.to eq({}) }
 
     describe '#set' do
-      context 'when key only' do
-        subject { instance.set(:a) }
+      context 'when no key(s) supplied' do
+        subject { instance.set(value: 1) }
 
-        it { expect { subject }.to raise_error(ArgumentError, 'set requires 2 or more arguments') }
+        it { expect { subject }.to raise_error(ArgumentError, 'set requires 1 or more keys') }
       end
 
-      context 'when simple key/value pair' do
-        before { instance.set(:a, 1) }
+      context 'when simple key, simple value' do
+        before { instance.set(:a, value: 1) }
 
         it { is_expected.to eq({ a: 1 }) }
       end
 
+      context 'when simple key, hash value' do
+        before { instance.set(:a, value: { iam: :complex }) }
+
+        it { is_expected.to eq({ a: { iam: :complex } }) }
+      end
+
       describe 'with default value' do
-        before { instance.set(:a, value, default_value: default_value) }
+        before { instance.set(:a, value: value, default_value: default_value) }
 
         let(:value) { 1 }
         let(:default_value) { 2 }
@@ -44,28 +50,34 @@ RSpec.describe KDirector::Builders::DomBuilder do
         end
       end
 
-      context 'when key_hierarchy provided' do
-        before { instance.set(:a, :b, :c, 1) }
+      context 'when deep keys hierarchy provided' do
+        before { instance.set(:a, :b, :c, value: 1) }
 
         it { is_expected.to eq({ a: { b: { c: 1 } } }) }
       end
     end
 
     describe '#add' do
-      context 'when only key supplied' do
-        subject { instance.add(:a) }
+      context 'when no key supplied' do
+        subject { instance.add }
 
-        it { expect { subject }.to raise_error(ArgumentError, 'add requires 2 or more arguments') }
+        it { expect { subject }.to raise_error(ArgumentError, 'add requires 1 or more keys') }
       end
 
       context 'when simple key/value pair' do
-        before { instance.add(:a, 1) }
+        before { instance.add(:a, value: 1) }
 
         it { is_expected.to eq({ a: [1] }) }
       end
 
+      context 'when simple key and complex hash value' do
+        before { instance.add(:a, value: { mmm: :mmm }) }
+
+        it { is_expected.to eq({ a: [{ mmm: :mmm }] }) }
+      end
+
       describe 'with default value' do
-        before { instance.add(:a, value, default_value: default_value) }
+        before { instance.add(:a, value: value, default_value: default_value) }
 
         let(:value) { 1 }
         let(:default_value) { 2 }
@@ -88,7 +100,7 @@ RSpec.describe KDirector::Builders::DomBuilder do
       end
 
       context 'when key_hierarchy provided' do
-        before { instance.add(:a, :b, :c, 1) }
+        before { instance.add(:a, :b, :c, value: 1) }
 
         it { is_expected.to eq({ a: { b: { c: [1] } } }) }
       end
