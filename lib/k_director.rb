@@ -7,6 +7,7 @@ require 'k_builder'
 require 'k_ext/github'
 
 require_relative 'k_director/version'
+require_relative 'k_director/builders/dom_builder'
 require_relative 'k_director/builders/actions_builder'
 require_relative 'k_director/directors/base_director'
 require_relative 'k_director/directors/child_director'
