@@ -68,4 +68,4 @@ resource_manager
   .glob('generators/**/*.rb')
 resource_manager.add_resources
 
-KManager.fire_actions(:load_content, :register_document, :load_document)
+KManager.boot
