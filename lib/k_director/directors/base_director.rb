@@ -18,14 +18,14 @@ module KDirector
           new(k_builder, builder, **opts)
         end
 
+        def default_builder_type(type)
+          @builder_type = type
+        end
+
         def builder_type
           return @builder_type if defined? @builder_type
 
           @builder_type = KDirector::Builders::ActionsBuilder
-        end
-
-        def default_builder_type(type)
-          @builder_type = type
         end
       end
 
@@ -58,7 +58,9 @@ module KDirector
       end
 
       def dom
-        builder.dom
+        return builder.dom if defined?(builder.dom)
+
+        nil
       end
 
       def typed_dom
