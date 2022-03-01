@@ -1,3 +1,10 @@
+## [0.14.1](https://github.com/klueless-io/k_director/compare/v0.14.0...v0.14.1) (2022-03-01)
+
+
+### Bug Fixes
+
+* handle case where base_director does not use a builder with .dom ([a1e868c](https://github.com/klueless-io/k_director/commit/a1e868c14bc0e331494e428b77113691c88efd16))
+
 # [0.14.0](https://github.com/klueless-io/k_director/compare/v0.13.0...v0.14.0) (2022-02-27)
 
 
