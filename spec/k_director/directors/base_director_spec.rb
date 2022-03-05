@@ -367,6 +367,18 @@ RSpec.describe KDirector::Directors::BaseDirector do
       end
     end
 
+    describe '#add_clipboard' do
+      before { instance.add_clipboard }
+
+      it do
+        is_expected.to include(
+          action: :add_clipboard,
+          played: false,
+          opts: {}
+        )
+      end
+    end
+
     describe '#set_current_folder_action' do
       subject { instance.builder.last_action }
 
