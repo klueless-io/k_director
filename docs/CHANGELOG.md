@@ -1,3 +1,10 @@
+# [0.15.0](https://github.com/klueless-io/k_director/compare/v0.14.1...v0.15.0) (2022-03-05)
+
+
+### Features
+
+* add clipboard action to director ([f5a8e4d](https://github.com/klueless-io/k_director/commit/f5a8e4d20c448630792a8ec13faacaf10e151b21))
+
 ## [0.14.1](https://github.com/klueless-io/k_director/compare/v0.14.0...v0.14.1) (2022-03-01)
 
 
