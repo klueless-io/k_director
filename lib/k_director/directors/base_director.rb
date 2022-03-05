@@ -177,6 +177,7 @@ module KDirector
         self
       end
       alias clipboard_copy add_clipboard
+      alias clipboard      add_clipboard
 
       # Run a command using shell, this is useful with command line tools
       def run_command(command)
