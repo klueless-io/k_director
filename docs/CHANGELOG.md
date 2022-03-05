@@ -1,3 +1,10 @@
+## [0.15.1](https://github.com/klueless-io/k_director/compare/v0.15.0...v0.15.1) (2022-03-05)
+
+
+### Bug Fixes
+
+* add clipboard alias to add_clipboard command ([fc4c8ec](https://github.com/klueless-io/k_director/commit/fc4c8ece391a470436bac4c25dde643575998c40))
+
 # [0.15.0](https://github.com/klueless-io/k_director/compare/v0.14.1...v0.15.0) (2022-03-05)
 
 
