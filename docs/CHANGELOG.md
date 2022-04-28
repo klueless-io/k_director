@@ -1,3 +1,16 @@
+# [0.16.0](https://github.com/klueless-io/k_director/compare/v0.15.1...v0.16.0) (2022-04-28)
+
+
+### Bug Fixes
+
+* fix cops ([4300c9a](https://github.com/klueless-io/k_director/commit/4300c9a3821144066ab44084ffcf6e44f6ba4ffb))
+
+
+### Features
+
+* add description flag to options builder ([3f2f570](https://github.com/klueless-io/k_director/commit/3f2f570286eee3a39727ae9c3aa759af9628d003))
+* add options builder director ([0b6c356](https://github.com/klueless-io/k_director/commit/0b6c35647fed487431fbbd3f574d93898abda0c6))
+
 ## [0.15.1](https://github.com/klueless-io/k_director/compare/v0.15.0...v0.15.1) (2022-03-05)
 
 
