@@ -18,7 +18,8 @@ require_relative 'k_director/dsls/children/package_json_configuration'
 require_relative 'k_director/dsls/children/package_json'
 require_relative 'k_director/dsls/nuxt3_dsl'
 require_relative 'k_director/dsls/ruby_gem_dsl'
-require_relative 'k_director/dsls/simple_dsl'
+require_relative 'k_director/dsls/basic_dsl'
+require_relative 'k_director/dsls/builder_options_dsl'
 
 module KDirector
   # raise KDirector::Error, 'Sample message'
