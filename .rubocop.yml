@@ -41,7 +41,7 @@ Metrics/MethodLength:
 Layout/LineLength:
   Max: 200
   # Ignores annotate output
-  IgnoredPatterns: ['\A# \*\*']
+  # IgnoredPatterns: ['\A# \*\*']
   IgnoreCopDirectives: true
 
 Lint/UnusedMethodArgument:
