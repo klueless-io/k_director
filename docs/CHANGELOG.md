@@ -1,3 +1,10 @@
+## [0.16.1](https://github.com/klueless-io/k_director/compare/v0.16.0...v0.16.1) (2022-04-28)
+
+
+### Bug Fixes
+
+* fluent interfrace for .debug ([71ca4c2](https://github.com/klueless-io/k_director/commit/71ca4c2ed26dff3857dbaac45856d1a20235fc10))
+
 # [0.16.0](https://github.com/klueless-io/k_director/compare/v0.15.1...v0.16.0) (2022-04-28)
 
 
