@@ -14,11 +14,12 @@ module KDirector
         'ruby/components/builder_options'
       end
 
-      def add_group(name, params: [], flags: [])
+      def add_group(name, params: [], flags: [], description: nil)
         group = {
           name: name,
           params: params,
-          flags: flags
+          flags: flags,
+          description: description
         }
 
         dom[:option_groups] << group

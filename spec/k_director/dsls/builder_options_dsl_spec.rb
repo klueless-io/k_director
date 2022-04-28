@@ -32,12 +32,12 @@ RSpec.describe KDirector::Dsls::BuilderOptionsDsl do
   describe '.add_group' do
     subject { director.dom }
 
-    before { director.add_group(name, params: params, flags: flags) }
+    before { director.add_group(name, params: params, flags: flags, description: 'some description') }
 
     let(:name) { :debug }
     let(:params) { %i[aaa xxx abc xyz] }
     let(:flags) { %i[a1 b1 c1] }
-    let(:expected_dom) { { option_groups: [{ name: name, params: params, flags: flags }] } }
+    let(:expected_dom) { { option_groups: [{ name: name, params: params, flags: flags, description: 'some description' }] } }
 
     it { is_expected.to eq(expected_dom) }
 
