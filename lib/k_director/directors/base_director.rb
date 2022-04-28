@@ -225,6 +225,8 @@ module KDirector
       def debug
         debug_options
         debug_dom
+
+        self
       end
 
       def debug_options
