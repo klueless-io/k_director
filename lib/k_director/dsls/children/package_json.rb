@@ -269,7 +269,7 @@ module KDirector
         def remove_package_lock
           file = File.join(k_builder.target_folder, 'package-lock.json')
 
-          File.delete(file) if File.exist?(file)
+          FileUtils.rm_rf(file)
 
           self
         end
@@ -280,7 +280,7 @@ module KDirector
         def remove_yarn_lock
           file = File.join(k_builder.target_folder, 'yarn.lock')
 
-          File.delete(file) if File.exist?(file)
+          FileUtils.rm_rf(file)
 
           self
         end

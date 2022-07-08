@@ -195,6 +195,12 @@ RSpec.describe KDirector::Directors::BaseDirector do
           it { is_expected.to have_attributes(a: 1, b: 2) }
         end
 
+        describe '#json_dom' do
+          subject { instance.json_dom.squish }
+
+          it { is_expected.to eq("{ \"a\": 1, \"b\": 2 }") }
+        end
+
         context 'when key/values are nested' do
           before { instance.data(:child, a: 1, b: 2) }
 

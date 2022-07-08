@@ -61,7 +61,41 @@ module KDirector
                               autoprefixer@latest
                             ])
 
-          set_package_group('storybook-nuxt'  , 'Storybook for (Vite/Nuxt)' , %w[
+          set_package_group('svelte', 'Svelte' , %w[
+                              @rollup/plugin-commonjs
+                              @rollup/plugin-node-resolve
+                              rollup
+                              rollup-plugin-css-only
+                              rollup-plugin-livereload
+                              rollup-plugin-svelte
+                              rollup-plugin-terser
+                              svelte
+                            ])
+
+          # {
+          #   "name": "svelte-app",
+          #   "version": "1.0.0",
+          #   "scripts": {
+          #     "build": "rollup -c",
+          #     "dev": "rollup -c -w",
+          #     "start": "sirv public"
+          #   },
+          #   "devDependencies": {
+          #     "@rollup/plugin-commonjs": "^16.0.0",
+          #     "@rollup/plugin-node-resolve": "^10.0.0",
+          #     "rollup": "^2.3.4",
+          #     "rollup-plugin-css-only": "^3.0.0",
+          #     "rollup-plugin-livereload": "^2.0.0",
+          #     "rollup-plugin-svelte": "^7.0.0",
+          #     "rollup-plugin-terser": "^7.0.0",
+          #     "svelte": "^3.0.0"
+          #   },
+          #   "dependencies": {
+          #     "sirv-cli": "^1.0.0"
+          #   }
+          # }
+
+          set_package_group('storybook-nuxt' , 'Storybook for (Vite/Nuxt)' , %w[
                               @storybook/vue3@6.4.18
                               @storybook/addon-postcss@2.0.0
                               @storybook/addon-storysource@6.4.18
