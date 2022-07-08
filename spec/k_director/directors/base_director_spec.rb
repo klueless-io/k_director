@@ -198,7 +198,7 @@ RSpec.describe KDirector::Directors::BaseDirector do
         describe '#json_dom' do
           subject { instance.json_dom.squish }
 
-          it { is_expected.to eq("{ \"a\": 1, \"b\": 2 }") }
+          it { is_expected.to eq('{ "a": 1, "b": 2 }') }
         end
 
         context 'when key/values are nested' do

@@ -68,7 +68,7 @@ module KDirector
       end
 
       def json_dom
-        return "{}" if dom.nil?
+        return '{}' if dom.nil?
 
         JSON.pretty_generate(dom)
       end
