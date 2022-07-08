@@ -68,7 +68,7 @@ module KDirector
       end
 
       def json_dom
-        return builder.to_json
+        builder.to_json
       end
 
       # Used by child directors to inherit options from parent
