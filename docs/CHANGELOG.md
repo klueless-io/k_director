@@ -1,3 +1,11 @@
+## [0.16.2](https://github.com/klueless-io/k_director/compare/v0.16.1...v0.16.2) (2022-07-08)
+
+
+### Bug Fixes
+
+* add json_dom support ([f42994a](https://github.com/klueless-io/k_director/commit/f42994ab0854fda6574f20d5ff5e81f06692c4bc))
+* add json_dom support ([8d3c142](https://github.com/klueless-io/k_director/commit/8d3c142b1e2fc6584a66f97e31df664163a0975f))
+
 ## [0.16.1](https://github.com/klueless-io/k_director/compare/v0.16.0...v0.16.1) (2022-04-28)
 
 
