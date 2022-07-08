@@ -68,9 +68,7 @@ module KDirector
       end
 
       def json_dom
-        return '{}' if dom.nil?
-
-        JSON.pretty_generate(dom)
+        return builder.to_json
       end
 
       # Used by child directors to inherit options from parent

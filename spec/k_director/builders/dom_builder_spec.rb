@@ -143,7 +143,7 @@ RSpec.describe KDirector::Builders::DomBuilder do
 
           it { is_expected.not_to be_empty }
         end
-      end
+      end 
 
       context 'after reset' do
         before { instance.reset }
@@ -154,6 +154,14 @@ RSpec.describe KDirector::Builders::DomBuilder do
           it { is_expected.to be_empty }
         end
       end
+    end
+
+    describe '#to_json' do
+      subject { instance.to_json.squish }
+
+      before { instance.set(:a, :b, :c, value: 1) }
+    
+      fit { is_expected.to eq("{ \"a\": { \"b\": { \"c\": 1 } } }") }
     end
   end
 end

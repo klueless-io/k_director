@@ -58,12 +58,12 @@ module KDirector
       end
 
       # add value to array
-      #   add(:a, 1)
-      #   add(:a, 2)
-      #   add(:a, 3)
-      #   add(:a, {key: 1})
-      #   add(:a, {key: 2})
-      #   add(:a, {key: 3})
+      #   add(:a, value: 1)
+      #   add(:a, value: 2)
+      #   add(:a, value: 3)
+      #   add(:a, value: {key: 1})
+      #   add(:a, value: {key: 2})
+      #   add(:a, value: {key: 3})
       def add(*keys, value: nil, default_value: nil)
         size = keys.size
 
@@ -84,6 +84,10 @@ module KDirector
       def build
         # hook into the set, add and queue_action methods form memoization
         KUtil.data.to_open_struct(@dom)
+      end
+
+      def to_json(*args)
+        JSON.pretty_generate(dom, *args)
       end
 
       private
