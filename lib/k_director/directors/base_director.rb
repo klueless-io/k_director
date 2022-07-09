@@ -42,7 +42,7 @@ module KDirector
         @options.template_base_folder ||= default_template_base_folder
         @options.on_exist             ||= default_on_exist       # %i[skip write compare]
         @options.on_action            ||= default_on_action      # %i[queue execute]
-        @options.active               = true unless defined?(@options.active)
+        @options.active = true unless defined?(@options.active)
       end
 
       def data(name = nil, **opts)
