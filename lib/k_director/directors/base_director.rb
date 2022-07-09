@@ -18,6 +18,12 @@ module KDirector
           new(k_builder, builder, **opts)
         end
 
+        def defaults(**opts)
+          default_builder_type(opts[:builder_type]) if opts[:builder_type]
+          default_on_exist(opts[:on_exist]) if opts[:on_exist]
+          default_on_action(opts[:on_action]) if opts[:on_action]
+        end
+
         def default_builder_type(type)
           @builder_type = type
         end
