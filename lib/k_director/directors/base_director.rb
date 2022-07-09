@@ -27,12 +27,31 @@ module KDirector
 
           @builder_type = KDirector::Builders::ActionsBuilder
         end
+
+        # valid values %i[skip write compare]
+        def default_on_exist(on_exist)
+          @on_exist = on_exist
+        end
+
+        def on_exist
+          @on_exist ||= :skip
+        end
+
+        # valid values %i[queue execute]
+        def default_on_action(on_action)
+          @on_action = on_action
+        end
+
+        def on_action
+          @on_action ||= :queue
+        end
       end
 
       attr_reader :builder
       attr_reader :k_builder
       attr_reader :options
 
+      # rubocop:disable Metrics/AbcSize
       def initialize(k_builder, builder, **opts)
         @k_builder  = k_builder
         @builder    = builder
@@ -40,10 +59,11 @@ module KDirector
 
         @options.director_name        ||= default_director_name
         @options.template_base_folder ||= default_template_base_folder
-        @options.on_exist             ||= default_on_exist       # %i[skip write compare]
-        @options.on_action            ||= default_on_action      # %i[queue execute]
+        @options.on_exist             ||= self.class.on_exist # %i[skip write compare]
+        @options.on_action            ||= self.class.on_action # %i[queue execute]
         @options.active = true unless defined?(@options.active)
       end
+      # rubocop:enable Metrics/AbcSize
 
       def data(name = nil, **opts)
         KDirector::Directors::Data.new(self, name, **opts)
@@ -268,16 +288,6 @@ module KDirector
 
       def default_director_name
         titleize.parse(self.class.name.split('::').last)
-      end
-
-      # valid values %i[skip write compare]
-      def default_on_exist
-        :skip
-      end
-
-      # valid values %i[queue execute]
-      def default_on_action
-        :queue
       end
 
       def folder_parts(*parts)

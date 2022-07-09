@@ -16,16 +16,9 @@ class SampleDirector < KDirector::Directors::BaseDirector
   default_builder_type(KDirector::Builders::DomBuilder)
 end
 
-class SampleDefaultOnExistDirector < KDirector::Directors::BaseDirector
-  def default_on_exist
-    :xmen
-  end
-end
-
-class SampleDefaultOnActionDirector < KDirector::Directors::BaseDirector
-  def default_on_action
-    :ymen
-  end
+class SampleDefaultOverridesDirector < KDirector::Directors::BaseDirector
+  default_on_exist(:xmen)
+  default_on_action(:ymen)
 end
 
 KConfig.configure(:base_director_spec) do |config|
@@ -146,7 +139,7 @@ RSpec.describe KDirector::Directors::BaseDirector do
       end
 
       context 'when director implement default_on_exist' do
-        let(:instance) { SampleDefaultOnExistDirector.init(k_builder) }
+        let(:instance) { SampleDefaultOverridesDirector.init(k_builder) }
 
         it { is_expected.to eq(:xmen) }
       end
@@ -164,7 +157,7 @@ RSpec.describe KDirector::Directors::BaseDirector do
       end
 
       context 'when director implement default_on_action' do
-        let(:instance) { SampleDefaultOnActionDirector.init(k_builder) }
+        let(:instance) { SampleDefaultOverridesDirector.init(k_builder) }
 
         it { is_expected.to eq(:ymen) }
       end
