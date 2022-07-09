@@ -40,9 +40,9 @@ module KDirector
 
         @options.director_name        ||= default_director_name
         @options.template_base_folder ||= default_template_base_folder
-        @options.on_exist             ||= :skip       # %i[skip write compare]
-        @options.on_action            ||= :queue      # %i[queue execute]
-        @options.active = true unless defined?(@options.active)
+        @options.on_exist             ||= default_on_exist       # %i[skip write compare]
+        @options.on_action            ||= default_on_action      # %i[queue execute]
+        @options.active               = true unless defined?(@options.active)
       end
 
       def data(name = nil, **opts)
@@ -268,6 +268,16 @@ module KDirector
 
       def default_director_name
         titleize.parse(self.class.name.split('::').last)
+      end
+
+      # valid values %i[skip write compare]
+      def default_on_exist
+        :skip
+      end
+
+      # valid values %i[queue execute]
+      def default_on_action
+        :queue
       end
 
       def folder_parts(*parts)

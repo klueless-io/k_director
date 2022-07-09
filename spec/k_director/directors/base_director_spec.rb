@@ -16,6 +16,18 @@ class SampleDirector < KDirector::Directors::BaseDirector
   default_builder_type(KDirector::Builders::DomBuilder)
 end
 
+class SampleDefaultOnExistDirector < KDirector::Directors::BaseDirector
+  def default_on_exist
+    :xmen
+  end
+end
+
+class SampleDefaultOnActionDirector < KDirector::Directors::BaseDirector
+  def default_on_action
+    :ymen
+  end
+end
+
 KConfig.configure(:base_director_spec) do |config|
   base_folder = File.expand_path("#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/")
 
@@ -132,6 +144,12 @@ RSpec.describe KDirector::Directors::BaseDirector do
 
         it { is_expected.to eq(:write) }
       end
+
+      context 'when director implement default_on_exist' do
+        let(:instance) { SampleDefaultOnExistDirector.init(k_builder) }
+
+        it { is_expected.to eq(:xmen) }
+      end
     end
 
     describe '.on_action' do
@@ -143,6 +161,12 @@ RSpec.describe KDirector::Directors::BaseDirector do
         let(:opts) { { on_action: :write } }
 
         it { is_expected.to eq(:write) }
+      end
+
+      context 'when director implement default_on_action' do
+        let(:instance) { SampleDefaultOnActionDirector.init(k_builder) }
+
+        it { is_expected.to eq(:ymen) }
       end
     end
   end
