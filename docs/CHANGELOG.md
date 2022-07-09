@@ -1,3 +1,10 @@
+## [0.16.5](https://github.com/klueless-io/k_director/compare/v0.16.4...v0.16.5) (2022-07-09)
+
+
+### Bug Fixes
+
+* add defaults ([ef96624](https://github.com/klueless-io/k_director/commit/ef96624d3d11d51105b4941d5d7ce375b75315e7))
+
 ## [0.16.4](https://github.com/klueless-io/k_director/compare/v0.16.3...v0.16.4) (2022-07-09)
 
 
