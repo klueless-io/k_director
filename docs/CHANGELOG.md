@@ -1,3 +1,12 @@
+## [0.16.4](https://github.com/klueless-io/k_director/compare/v0.16.3...v0.16.4) (2022-07-09)
+
+
+### Bug Fixes
+
+* add default on_exist and on_action ([36d0634](https://github.com/klueless-io/k_director/commit/36d06345f803fbbd97f0c9dd44c7bcff123b4c51))
+* add default on_exist and on_action ([6f4003e](https://github.com/klueless-io/k_director/commit/6f4003eb447205829c15375adaf06f1a32126349))
+* improve default on_exist and on_action ([c89ed83](https://github.com/klueless-io/k_director/commit/c89ed830d6b9b322539f4b5bf4abfb649312501f))
+
 ## [0.16.3](https://github.com/klueless-io/k_director/compare/v0.16.2...v0.16.3) (2022-07-08)
 
 
