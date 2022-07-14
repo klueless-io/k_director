@@ -265,7 +265,7 @@ module KDirector
         h = options.to_h.sort.to_h
         h.each_key do |key|
           # requires k_funky
-          log.kv(titleize.parse(key.to_s), h[key])
+          log.kv(titleize.call(key.to_s), h[key])
         end
 
         nil
@@ -293,7 +293,7 @@ module KDirector
       end
 
       def default_director_name
-        titleize.parse(self.class.name.split('::').last)
+        titleize.call(self.class.name.split('::').last)
       end
 
       def folder_parts(*parts)
@@ -312,8 +312,7 @@ module KDirector
       end
 
       def titleize
-        require 'handlebars/helpers/string_formatting/titleize'
-        Handlebars::Helpers::StringFormatting::Titleize.new
+        Cmdlet::Case::Title.new
       end
     end
   end

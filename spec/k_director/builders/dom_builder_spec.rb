@@ -161,7 +161,7 @@ RSpec.describe KDirector::Builders::DomBuilder do
 
       before { instance.set(:a, :b, :c, value: 1) }
 
-      fit { is_expected.to eq('{ "a": { "b": { "c": 1 } } }') }
+      it { is_expected.to eq('{ "a": { "b": { "c": 1 } } }') }
     end
   end
 end
