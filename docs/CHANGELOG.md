@@ -1,3 +1,13 @@
+## [0.16.6](https://github.com/klueless-io/k_director/compare/v0.16.5...v0.16.6) (2022-10-02)
+
+
+### Bug Fixes
+
+* bump gem versions ([2cad0cd](https://github.com/klueless-io/k_director/commit/2cad0cde88eb0e1843cb5eb7df1d8ab4f360c073))
+* fix cops ([ea8335e](https://github.com/klueless-io/k_director/commit/ea8335e2cb66a935d75e87dce1df1e9cc9fe0a2e))
+* fix cops ([3433322](https://github.com/klueless-io/k_director/commit/34333225b2bbb446fdc0a2b80c409fb7dc8d8d24))
+* update gem dependancies ([906e658](https://github.com/klueless-io/k_director/commit/906e6587ef9e7c33157339144203be4f50d4d1a6))
+
 ## [0.16.5](https://github.com/klueless-io/k_director/compare/v0.16.4...v0.16.5) (2022-07-09)
 
 
