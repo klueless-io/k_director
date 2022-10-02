@@ -38,9 +38,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   # spec.extensions    = ['ext/k_director/extconf.rb']
 
-  spec.add_dependency 'k_config', '~> 0'
-  spec.add_dependency 'k_log', '~> 0'
   spec.add_dependency 'k_builder', '~> 0'
+  spec.add_dependency 'k_config', '~> 0'
   spec.add_dependency 'k_ext-github', '~> 0'
+  spec.add_dependency 'k_log', '~> 0'
   spec.add_dependency 'k_util', '~> 0'
 end
