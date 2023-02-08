@@ -1,3 +1,10 @@
+## [0.16.7](https://github.com/klueless-io/k_director/compare/v0.16.6...v0.16.7) (2023-02-08)
+
+
+### Bug Fixes
+
+* update .gitignore ([b03ee0e](https://github.com/klueless-io/k_director/commit/b03ee0e18bb00a22f2a7f79261d0937574c17658))
+
 ## [0.16.6](https://github.com/klueless-io/k_director/compare/v0.16.5...v0.16.6) (2022-10-02)
 
 
