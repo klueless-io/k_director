@@ -1,5 +1,68 @@
 {
   "cSpell.words": [
     "postcss"
+  ],
+  "editor.fontSize": 12,
+  "editor.guides.indentation": false,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "punctuation.definition.string.begin.ruby",
+          "punctuation.definition.string.end.ruby"
+        ], "settings": {
+              "foreground": "#555"
+          }
+      },
+      {
+        "scope": [
+          "entity.name.function",
+          "variable.other.ruby"
+        ]
+        "settings": {
+          "foreground": "#ccba9d"
+        }
+      },
+      {
+        "scope": [
+          "keyword.control.start-block.ruby",
+          "keyword.control.ruby"
+        ],
+        "settings": {
+          "foreground": "#95a19f"
+        }
+      },
+      {
+        "scope": [
+          "string.quoted.single.ruby"
+        ],
+        "settings": {
+          "foreground": "#e6d4cc"
+        }
+      },
+      {
+        "scope": [
+          "constant.language.symbol.ruby"
+        ],
+        "settings": {
+          "foreground": "#CC9DC6"
+        }
+      }
+      ,
+      {
+        "scope": [
+          "constant.language.symbol.hashkey.ruby"
+        ],
+        "settings": {
+          "foreground": "#95a19f"
+        }
+      }
+      
   ]
+  },
+  {
+    "workbench.colorCustomizations": {
+       "editor.background": "#2B1B17"
+    }
+  }  
 }

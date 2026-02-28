@@ -1,5 +1,0 @@
-require_relative './dsl/builders/actions_builder'
-require_relative './dsl/directors/base_director'
-require_relative './dsl/directors/child_director'
-require_relative './dsl/github_dsl'
-require_relative './dsl/ruby_gem_dsl'

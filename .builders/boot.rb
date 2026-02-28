@@ -18,15 +18,20 @@ def k_builder
 end
 
 KConfig.configure(CONFIG_KEY) do |config|
-  builder_folder    = Dir.pwd
-  base_folder       = File.expand_path('../', builder_folder)
-  global_template   = File.expand_path('~/dev/kgems/k_templates/templates')
-
+  builder_folder                = Dir.pwd
+  base_folder                   = File.expand_path('../', builder_folder)
+  global_template               = File.expand_path('~/dev/kgems/k_templates/templates')
+  gpt_agent_mdx_folder    = File.expand_path('~/dev/sites/working-with-sean/gpt-agents/src/content/gpt-agents')
+  gpt_agent_json_folder   = File.expand_path('~/dev/sites/working-with-sean/gpt-agents/src/content/gpt-agents-json')
+  
   config.template_folders.add(:global_template    , global_template)
   config.template_folders.add(:template           , File.expand_path('.templates', Dir.pwd))
 
   config.target_folders.add(:app                  , base_folder)
   config.target_folders.add(:builder              , builder_folder)
+  config.target_folders.add(:gpt_agent            , gpt_agent_mdx_folder)
+  config.target_folders.add(:gpt_agent_json       , gpt_agent_json_folder)
+
   # config.target_folders.add(:tailwind_elements    , global_template, 'tailwind', 'elements')
   # config.target_folders.add(:data                 , :builder, 'data')
   # config.target_folders.add(:database             , :data, 'database')

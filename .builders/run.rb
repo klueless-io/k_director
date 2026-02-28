@@ -5,7 +5,7 @@ KManager.action :run do
 end
 
 KManager.opts.app_name                    = 'RubyGem Generator'
-KManager.opts.sleep                       = 2
+KManager.opts.sleep                       = 4
 KManager.opts.reboot_on_kill              = 0
 KManager.opts.reboot_sleep                = 4
 KManager.opts.exception_style             = :short
